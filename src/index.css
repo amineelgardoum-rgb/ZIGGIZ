@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Colors — black, blue & yellow palette (dark background) */
+  --color-sand:        #060B12;   /* blue-black background */
+  --color-sand-deep:   #0A121C;   /* slightly lighter blue-black surface */
+  --color-ink:          #F5F5F0;   /* off-white text (was near-black, flipped for contrast) */
+  --color-ink-soft:     #A8B0B8;   /* soft gray-blue for secondary text */
+  --color-ocean-deep:   #071B2E;   /* deep navy/black-blue */
+  --color-ocean:        #0F3D63;   /* strong blue */
+  --color-ocean-light:  #2E86C1;   /* brighter accent blue */
+  --color-coral:        #F2B705;   /* yellow accent */
+  --color-sun:          #FFD23F;   /* bright yellow */
+  --color-foam:         #FFFFFF;   /* white */
+  --color-ghost:        #101820;   /* dark card/surface tone */
+  --color-hairline:     #223040;   /* subtle blue-tinted border */
+  --color-on-brand:     #FFFFFF;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-card-lg: 2rem;
+  --radius-pill: 62.5rem;
+}
+
+html {
+  scroll-behavior: auto;
+}
+html, body {
+  background: var(--color-sand);
+  color: var(--color-ink);
+}
+body {
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+* { box-sizing: border-box; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: inherit; }
+:focus-visible {
+  outline: 2px solid var(--color-ocean-light);
+  outline-offset: 2px;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+.scroll-locked {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.font-display { font-family: var(--font-display); }
+
+/* clip-mask reveal helpers */
+.clip-line { overflow: hidden; padding-bottom: 0.14em; }
+.clip-word { overflow: hidden; padding-bottom: 0.12em; display: inline-block; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
