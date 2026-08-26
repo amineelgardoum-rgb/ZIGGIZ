@@ -1,4 +1,4 @@
-# 🏄 Saltline Surf Co.
+# 🏄 ZIGGIZ
 
 <p align="center">
   <img src="public/images/surf/surf1.jpeg" alt="Saltline Surf Co — surfer riding a wave at golden hour" width="820">
@@ -17,25 +17,26 @@ counters, and buttery Lenis smooth scrolling.
 
 ## ✨ Highlights
 
-| | |
-|---|---|
-| 🌊 **Scroll-linked hero** | Pinned hero scene where photography cross-fades continuously with scroll progress |
-| ⌨️ **Typewriter headline** | Rotating, color-coded words — *Surf* (white), *Beach* (blue), *Hostels* (clay brown) |
-| 📣 **Announcement marquee** | Thin auto-scrolling promo bar pinned at the very top of the page |
-| 🎠 **Ghost-word carousel** | Oversized display type that swaps per slide, parallaxed by scroll |
-| 🖼️ **Lessons accordion** | Hover-to-expand image panels for lessons, quad trips, boat trips & hostel |
-| 🔢 **Animated KPIs** | Count-up numbers inside black glassmorphism cards over a photo backdrop |
-| 💬 **Review cards** | Black-glass testimonial cards with staggered slide-up reveals |
-| 🧭 **Fullscreen menu** | Staggered nav overlay with scroll locking and Esc/backdrop close |
-| 📬 **Booking modal** | Accessible "Book a trip" dialog (stub submit — wire it to your backend) |
-| 🖱️ **Lenis smooth scroll** | Inertial, eased scrolling across the whole page |
-| ♿ **Accessibility** | Keyboard-navigable tabs/menu/modals, focus-visible rings, `prefers-reduced-motion` support |
+|                                   |                                                                                             |
+| --------------------------------- | ------------------------------------------------------------------------------------------- |
+| 🌊**Scroll-linked hero**    | Pinned hero scene where photography cross-fades continuously with scroll progress           |
+| ⌨️**Typewriter headline** | Rotating, color-coded words —*Surf* (white), *Beach* (blue), *Hostels* (clay brown)  |
+| 📣**Announcement marquee**  | Thin auto-scrolling promo bar pinned at the very top of the page                            |
+| 🎠**Ghost-word carousel**   | Oversized display type that swaps per slide, parallaxed by scroll                           |
+| 🖼️**Lessons accordion**   | Hover-to-expand image panels for lessons, quad trips, boat trips & hostel                   |
+| 🔢**Animated KPIs**         | Count-up numbers inside black glassmorphism cards over a photo backdrop                     |
+| 💬**Review cards**          | Black-glass testimonial cards with staggered slide-up reveals                               |
+| 🧭**Fullscreen menu**       | Staggered nav overlay with scroll locking and Esc/backdrop close                            |
+| 📬**Booking modal**         | Accessible "Book a trip" dialog (stub submit — wire it to your backend)                    |
+| 🖱️**Lenis smooth scroll** | Inertial, eased scrolling across the whole page                                             |
+| ♿**Accessibility**         | Keyboard-navigable tabs/menu/modals, focus-visible rings,`prefers-reduced-motion` support |
 
 ---
 
 ## 🖼️ The experience, section by section
 
 ### Hero — first paddle
+
 The full-viewport hero pins while you scroll: photography cross-fades through
 surf, activities and hostel shots, a typewriter types and deletes
 **SURF → BEACH → HOSTELS**, and a floating trip slider + stat card sit on a
@@ -47,6 +48,7 @@ glass backdrop.
 </p>
 
 ### Guides carousel
+
 A scroll-parallaxed showcase of what the outfit offers, framed by oversized
 ghost typography and a marquee of famous breaks.
 
@@ -57,6 +59,7 @@ ghost typography and a marquee of famous breaks.
 </p>
 
 ### Lessons & trips
+
 Hover any panel to expand it — surf lessons for all ages, quad rides through
 desert tracks, sunset boat cruises, and beds steps from the break.
 
@@ -67,6 +70,7 @@ desert tracks, sunset boat cruises, and beds steps from the break.
 </p>
 
 ### By the numbers
+
 KPI cards with count-up animation, black glassmorphism, and a sun-yellow hover
 border — layered over an aerial shot of the coastline.
 
@@ -75,6 +79,7 @@ border — layered over an aerial shot of the coastline.
 </p>
 
 ### What travelers say
+
 Real words from guests, on frosted black cards over a Taghazout backdrop.
 
 <p align="center">
@@ -93,15 +98,15 @@ Real words from guests, on frosted black cards over a Taghazout backdrop.
 
 ## 🧰 Stack
 
-| Layer | Tool | Why |
-|---|---|---|
-| UI | **React 19** | Component architecture, hooks-driven state |
-| Build | **Vite 8** | Instant HMR, static production builds |
-| Styling | **Tailwind CSS v4** | Utility classes + design tokens via `@theme` in CSS |
-| Motion | **Framer Motion 13** | Scroll-linked transforms, reveals, modals, loader |
-| Scrolling | **Lenis** | Inertial smooth scrolling + programmatic `scrollTo` |
-| Icons | **lucide-react** | Crisp, tree-shakeable icon set |
-| Lint | **oxlint** | Fast zero-config linting |
+| Layer     | Tool                       | Why                                                  |
+| --------- | -------------------------- | ---------------------------------------------------- |
+| UI        | **React 19**         | Component architecture, hooks-driven state           |
+| Build     | **Vite 8**           | Instant HMR, static production builds                |
+| Styling   | **Tailwind CSS v4**  | Utility classes + design tokens via`@theme` in CSS |
+| Motion    | **Framer Motion 13** | Scroll-linked transforms, reveals, modals, loader    |
+| Scrolling | **Lenis**            | Inertial smooth scrolling + programmatic`scrollTo` |
+| Icons     | **lucide-react**     | Crisp, tree-shakeable icon set                       |
+| Lint      | **oxlint**           | Fast zero-config linting                             |
 
 ## 🎨 Design system
 
@@ -109,14 +114,14 @@ Tokens are declared once in [`src/index.css`](src/index.css) inside Tailwind's
 `@theme` block and consumed as utilities everywhere (`bg-ocean-deep`,
 `text-sun`, `rounded-[2rem]`, …).
 
-| Token | Value | Use |
-|---|---|---|
-| `sand` | `#060B12` | Page background (blue-black) |
-| `ocean-deep` | `#071B2E` | Section surfaces, modal, footer |
-| `ocean` / `ocean-light` | `#0F3D63` / `#2E86C1` | Brand blues, accents |
-| `sun` / `coral` | `#FFD23F` / `#F2B705` | CTAs, hover borders, highlights |
-| `clay` | `#B5793F` | "Hostels" headline accent |
-| `ink` / `ink-soft` | `#F5F5F0` / `#A8B0B8` | Primary / secondary text |
+| Token                       | Value                     | Use                             |
+| --------------------------- | ------------------------- | ------------------------------- |
+| `sand`                    | `#060B12`               | Page background (blue-black)    |
+| `ocean-deep`              | `#071B2E`               | Section surfaces, modal, footer |
+| `ocean` / `ocean-light` | `#0F3D63` / `#2E86C1` | Brand blues, accents            |
+| `sun` / `coral`         | `#FFD23F` / `#F2B705` | CTAs, hover borders, highlights |
+| `clay`                    | `#B5793F`               | "Hostels" headline accent       |
+| `ink` / `ink-soft`      | `#F5F5F0` / `#A8B0B8` | Primary / secondary text        |
 
 **Typography** — [Fraunces](https://fonts.google.com/specimen/Fraunces) for
 display headings, [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans)
