@@ -1,34 +1,35 @@
 import { motion } from 'framer-motion';
+import { ArrowUp } from 'lucide-react';
 import Logo from './Logo';
 import { Eyebrow, PillButton } from './UI';
 import { StackedLines } from './RevealText';
-import { scrollToId } from '../hooks/useLenis';
+import { getLenis, goTo } from '../hooks/useLenis';
 
 const COLUMNS = [
   {
     heading: 'Lessons',
     links: [
-      { label: 'Grom Camp', href: 'grom' },
-      { label: 'Advanced Squad', href: 'advanced' },
-      { label: 'Adult Lessons', href: 'adult-lessons' },
-      { label: 'Private Guiding', href: 'private-guiding' },
+      { label: 'Grom Camp', href: 'lessons' },
+      { label: 'Advanced Squad', href: 'lessons' },
+      { label: 'Adult Lessons', href: 'lessons' },
+      { label: 'Private Guiding', href: 'lessons' },
     ],
   },
   {
     heading: 'Trips',
     links: [
-      { label: 'Boat Charters', href: 'spots' },
-      { label: 'Breaks', href: 'spots' },
-      { label: 'Events', href: 'spots' },
-      { label: 'Gear Shop', href: 'spots' },
+      { label: 'Boat Charters', href: 'lessons' },
+      { label: 'Breaks', href: 'lessons' },
+      { label: 'Events', href: 'lessons' },
+      { label: 'Gear Shop', href: 'lessons' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { label: 'About', href: 'about' },
+      { label: 'About', href: 'contact' },
       { label: 'Guides', href: 'lessons' },
-      { label: 'Careers', href: 'careers' },
+      { label: 'Careers', href: 'contact' },
       { label: 'Contact', href: 'contact' },
     ],
   },
@@ -38,13 +39,14 @@ const SOCIAL = ['Instagram', 'X', 'YouTube', 'TikTok'];
 const LEGAL = ['Privacy', 'Terms'];
 
 export default function Footer({ onOpenContact }) {
-  const go = (id) => (e) => {
-    e.preventDefault();
-    scrollToId(id);
+  const toTop = () => {
+    const lenis = getLenis();
+    if (lenis) lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer id="contact" className="mt-3 rounded-[2rem] bg-ocean-deep px-6 py-14 text-white sm:px-10 sm:py-16">
+    <footer id="contact" className="scroll-mt-24 rounded-[2rem] bg-ocean-deep px-6 py-16 text-white sm:px-10 sm:py-24">
       <div className="flex flex-col gap-8 border-b border-white/15 pb-14 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Eyebrow tone="light">Get started</Eyebrow>
@@ -89,7 +91,7 @@ export default function Footer({ onOpenContact }) {
             <ul className="mt-4 space-y-3 text-sm text-white/80">
               {col.links.map((l) => (
                 <li key={l.label}>
-                  <a href={`#${l.href}`} onClick={go(l.href)} className="hover:text-white">
+                  <a href={`#${l.href}`} onClick={goTo(l.href)} className="hover:text-white">
                     {l.label}
                   </a>
                 </li>
@@ -100,21 +102,30 @@ export default function Footer({ onOpenContact }) {
       </div>
 
       <div className="flex flex-col items-start gap-5 border-t border-white/15 pt-8 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
-        <p>&copy; 2026 Saltline Surf Co. All rights reserved.</p>
+        <p>&copy; 2026 Ziggiz Surf Co. All rights reserved.</p>
         <nav className="flex gap-5">
           {SOCIAL.map((s) => (
-            <a key={s} href={`#${s.toLowerCase()}`} className="hover:text-white">
+            <a key={s} href={`#${s.toLowerCase()}`} className="transition-colors hover:text-white">
               {s}
             </a>
           ))}
         </nav>
-        <nav className="flex gap-5">
-          {LEGAL.map((s) => (
-            <a key={s} href={`#${s.toLowerCase()}`} className="hover:text-white">
-              {s}
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center gap-5">
+          <nav className="flex gap-5">
+            {LEGAL.map((s) => (
+              <a key={s} href={`#${s.toLowerCase()}`} className="transition-colors hover:text-white">
+                {s}
+              </a>
+            ))}
+          </nav>
+          <button
+            onClick={toTop}
+            aria-label="Back to top"
+            className="grid size-10 place-items-center rounded-full border border-white/20 text-white/80 transition-colors duration-300 hover:border-sun hover:bg-sun hover:text-ocean-deep"
+          >
+            <ArrowUp className="size-4" />
+          </button>
+        </div>
       </div>
     </footer>
   );

@@ -1,20 +1,11 @@
-import { motion } from 'framer-motion';
 import Logo from './Logo';
-import { scrollToId } from '../hooks/useLenis';
+import { goTo } from '../hooks/useLenis';
 
 export default function Header({ onOpenMenu, onOpenContact }) {
-  const go = (id) => (e) => {
-    e.preventDefault();
-    scrollToId(id);
-  };
-
   return (
     <header className="relative z-20 flex items-center px-6 pt-6 sm:px-10 sm:pt-8">
       <nav className="hidden flex-1 items-center gap-8 text-xs text-white/90 lg:flex">
-        <a href="#spots" onClick={go('spots')} className="transition-opacity hover:opacity-100 hover:text-white">
-          Trips &amp; Spots
-        </a>
-        <a href="#lessons" onClick={go('lessons')} className="transition-opacity hover:opacity-100 hover:text-white">
+        <a href="#lessons" onClick={goTo('lessons')} className="transition-opacity hover:opacity-100 hover:text-white">
           Lessons &amp; Coaches
         </a>
       </nav>

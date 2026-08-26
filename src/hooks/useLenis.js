@@ -13,11 +13,17 @@ export default function useLenis() {
   const started = useRef(false);
 
   useEffect(() => {
-    if (!lenisInstance) {
+    const prefersReduced =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!lenisInstance && !prefersReduced) {
       lenisInstance = new Lenis({
+        lerp: 0.09,
         smoothWheel: true,
-        duration: 1.1,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
+        syncTouch: true,
+        touchMultiplier: 1.4,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
       const raf = (time) => {
         lenisInstance.raf(time);
@@ -51,10 +57,21 @@ export function unlockScroll() {
 
 export function scrollToId(id) {
   const el = document.getElementById(id);
-  if (!el) return;
+  if (!el) {
+    if (import.meta.env?.DEV) console.warn(`[scrollToId] no element with id="${id}"`);
+    return;
+  }
   if (lenisInstance) {
     lenisInstance.scrollTo(el, { offset: -12 });
   } else {
     el.scrollIntoView({ behavior: 'smooth' });
   }
+}
+
+/** Returns a click handler that prevents default and smooth-scrolls to a section. */
+export function goTo(id) {
+  return (e) => {
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+    scrollToId(id);
+  };
 }

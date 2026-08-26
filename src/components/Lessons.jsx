@@ -1,97 +1,67 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Eyebrow } from './UI';
-import { StackedLines } from './RevealText';
-import { scrollToId } from '../hooks/useLenis';
+import HoverBanner from './HoverBanner';
 
-const ROWS = [
+const PANELS = [
   {
-    index: '01',
-    name: 'Grom Camp',
-    description: 'Whitewash confidence, pop-ups, and ocean safety for ages 6–14.',
-    href: '#grom',
+    id: 'surf',
+    label: 'Surf Lessons',
+    description: 'From first paddle-out to green waves',
+    image: '/images/surf/surf3.jpeg',
+    links: [
+      { name: 'Grom Camp', note: 'Ages 6–14', href: 'lessons' },
+      { name: 'Adult Lessons', note: 'Small groups', href: 'lessons' },
+      { name: 'Private Guiding', note: 'One-on-one', href: 'lessons' },
+    ],
   },
   {
-    index: '02',
-    name: 'Advanced Squad',
-    description: 'Wave selection, turns, and reef strategy for competitive surfers.',
-    href: '#advanced',
+    id: 'quads',
+    label: 'Quad Trips',
+    description: 'Coastal tracks & cliff-top views',
+    image: '/images/activities/activitie3.png',
+    links: [
+      { name: 'Sunset Dune Run', note: 'Golden hour', href: 'lessons' },
+      { name: 'Paradise Valley Ride', note: 'Swim stop', href: 'lessons' },
+    ],
   },
   {
-    index: '03',
-    name: 'Adult Lessons',
-    description: 'Small-group coaching to fix habits and catch more waves, faster.',
-    href: '#adult-lessons',
+    id: 'boats',
+    label: 'Boat Trips',
+    description: 'Hidden coves & sunsets at sea',
+    image: '/images/activities/activitie4.png',
+    links: [
+      { name: 'Sunset Coast Cruise', note: 'Mint tea on deck', href: 'lessons' },
+      { name: 'Snorkel & Hidden Coves', note: 'Fresh fish lunch', href: 'lessons' },
+    ],
   },
   {
-    index: '04',
-    name: 'Private Guiding',
-    description: 'One-on-one sessions matched to your goals, tide, and swell window.',
-    href: '#private-guiding',
+    id: 'hostel',
+    label: 'Surf Hostel',
+    description: 'Beds steps from the break',
+    image: '/images/hostels/hostle1.png',
+    links: [
+      { name: 'Shared Dorm', note: 'Meet the crew', href: 'lessons' },
+      { name: 'Private Room', note: 'Ocean view', href: 'lessons' },
+      { name: 'Surf & Stay Pack', note: 'Bed + lessons', href: 'lessons' },
+    ],
   },
 ];
 
 export default function Lessons() {
   return (
-    <section id="lessons" className="relative isolate overflow-hidden bg-sand-deep px-5 py-20 sm:px-10">
-      <div className="absolute inset-2 -z-10 overflow-hidden rounded-[2rem]">
+    <section
+      id="lessons"
+      className="relative isolate scroll-mt-24 overflow-hidden rounded-[2rem] bg-sand-deep px-6 py-16 sm:px-10 sm:py-24"
+    >
+      <div className="absolute inset-0 -z-10">
         <img
-          src="/images/surf.png"
+          src="/images/background/agadir.png"
           alt=""
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-ocean-deep/60" />
       </div>
-
-      <Eyebrow className="inline-block rounded-2xl border border-white/20 bg-black/10 px-5 py-2.5 backdrop-blur-md">
-        Lessons &amp; Coaching
-      </Eyebrow>
-
-      <StackedLines
-        lines={['Built for', 'every level']}
-        className="mt-3 font-display text-6xl font-medium leading-[0.95] tracking-tight"
-      />
-
-      <ul className="mt-10 space-y-4 rounded-2xl border border-white/20 bg-black/10 p-6">
-        {ROWS.map((row, i) => (
-          <motion.li
-            key={row.index}
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ type: 'spring', stiffness: 190, damping: 26, delay: i * 0.09 }}
-            className="rounded-2xl border border-white/10"
-          >
-            <a
-              href={row.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToId(row.href.slice(1));
-              }}
-              className="group flex items-center gap-6 rounded-2xl p-5 transition duration-300 ease-in-out focus-visible:bg-sand hover:backdrop-blur-md"
-            >
-              <span className="w-10 text-sm font-medium text-ink-soft">{row.index}</span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-2xl font-medium tracking-tight sm:text-3xl">{row.name}</span>
-                <span className="mt-1 block text-sm text-ink-soft">{row.description}</span>
-              </span>
-              <motion.span
-                className="grid size-11 shrink-0 place-items-center rounded-full border border-hairline"
-                initial="rest"
-                whileHover="hover"
-                animate="rest"
-              >
-                <motion.span
-                  variants={{ rest: { x: 0, opacity: 0.55 }, hover: { x: 8, opacity: 1 } }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </motion.span>
-              </motion.span>
-            </a>
-          </motion.li>
-        ))}
-      </ul>
+      <div className="h-[28rem] sm:h-[34rem]">
+        <HoverBanner items={PANELS} label="Lessons and trips" />
+      </div>
     </section>
   );
 }

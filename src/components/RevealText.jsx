@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
@@ -44,6 +45,7 @@ export function StackedLines({
  */
 export function WordReveal({
   text,
+  words: wordItems,
   as: Tag = 'h1',
   className = '',
   wordClassName = '',
@@ -53,13 +55,15 @@ export function WordReveal({
   gate = true,
   once = true,
 }) {
-  const words = text.split(' ');
+  const words = wordItems
+    ? wordItems
+    : text.split(' ').map((t) => ({ text: t }));
   return (
     <Tag className={className}>
       {words.map((word, i) => (
-        <span className="clip-word" key={word + i}>
+        <span className="clip-word" key={word.text + i}>
           <motion.span
-            className={`inline-block ${wordClassName}`}
+            className={`inline-block ${wordClassName} ${word.className || ''}`}
             initial={{ y: '115%', opacity: 0 }}
             animate={gate ? { y: '0%', opacity: 1 } : { y: '115%', opacity: 0 }}
             transition={{
@@ -68,7 +72,7 @@ export function WordReveal({
               delay: gate ? delayStart + i * stagger : 0,
             }}
           >
-            {word}
+            {word.text}
             {i < words.length - 1 ? '\u00A0' : ''}
           </motion.span>
         </span>
@@ -95,6 +99,63 @@ export function WordFade({ text, as: Tag = 'p', className = '', stagger = 0.028,
           {i < words.length - 1 ? '\u00A0' : ''}
         </motion.span>
       ))}
+    </Tag>
+  );
+}
+
+/**
+ * TypeWriter — rotating headline: types one word, deletes it, then types
+ * the next, looping forever. Each word keeps its own color class.
+ */
+export function TypeWriter({
+  words,
+  as: Tag = 'h1',
+  className = '',
+  typingSpeed = 95,
+  deletingSpeed = 45,
+  pauseFull = 1500,
+  pauseEmpty = 350,
+  gate = true,
+  cursorClassName = '',
+}) {
+  const [wi, setWi] = useState(0);
+  const [count, setCount] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (!gate) return;
+    const word = words[wi].text;
+    let delay = deleting ? deletingSpeed : typingSpeed;
+    if (!deleting && count === word.length) delay = pauseFull;
+    if (deleting && count === 0) delay = pauseEmpty;
+
+    const id = setTimeout(() => {
+      if (!deleting && count < word.length) {
+        setCount(count + 1);
+      } else if (!deleting && count === word.length) {
+        setDeleting(true);
+      } else if (deleting && count > 0) {
+        setCount(count - 1);
+      } else {
+        setDeleting(false);
+        setWi((wi + 1) % words.length);
+      }
+    }, delay);
+    return () => clearTimeout(id);
+  }, [gate, wi, count, deleting, words, typingSpeed, deletingSpeed, pauseFull, pauseEmpty]);
+
+  const word = words[wi];
+  const done = deleting && count === 0;
+
+  return (
+    <Tag className={className}>
+      <span className={word.className}>{word.text.slice(0, count)}</span>
+      <span
+        className={`ml-1 inline-block h-[0.78em] w-[0.06em] translate-y-[0.08em] bg-current ${
+          done ? 'opacity-0' : 'animate-pulse'
+        } ${cursorClassName}`}
+        aria-hidden="true"
+      />
     </Tag>
   );
 }

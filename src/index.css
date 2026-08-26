@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -13,12 +13,13 @@
   --color-coral:        #F2B705;   /* yellow accent */
   --color-sun:          #FFD23F;   /* bright yellow */
   --color-foam:         #FFFFFF;   /* white */
+  --color-clay:         #B5793F;   /* warm brown for hostels */
   --color-ghost:        #101820;   /* dark card/surface tone */
   --color-hairline:     #223040;   /* subtle blue-tinted border */
   --color-on-brand:     #FFFFFF;
 
   --font-display: "Fraunces", "Georgia", serif;
-  --font-body: "Manrope", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 
   --radius-card: 1.5rem;
   --radius-card-lg: 2rem;
@@ -26,7 +27,10 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 html, body {
   background: var(--color-sand);
@@ -60,6 +64,11 @@ html.lenis, html.lenis body { height: auto; }
 /* clip-mask reveal helpers */
 .clip-line { overflow: hidden; padding-bottom: 0.14em; }
 .clip-word { overflow: hidden; padding-bottom: 0.12em; display: inline-block; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

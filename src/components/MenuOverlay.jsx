@@ -8,7 +8,7 @@ import { lockScroll, unlockScroll, scrollToId } from '../hooks/useLenis';
 
 const LINKS = [
   { label: 'Lessons', href: 'lessons' },
-  { label: 'Spots', href: 'spots' },
+  { label: 'Spots', href: 'lessons' },
   { label: 'Reviews', href: 'testimonials' },
   { label: 'Contact', href: 'contact' },
 ];

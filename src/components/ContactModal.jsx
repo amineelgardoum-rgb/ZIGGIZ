@@ -63,7 +63,7 @@ export default function ContactModal({ open, onClose }) {
             role="dialog"
             aria-modal="true"
             aria-label="Book a trip"
-            className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 text-ink shadow-2xl shadow-ocean-deep/30 sm:p-8"
+            className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-3xl bg-ocean-deep p-6 text-white shadow-2xl shadow-black/40 sm:p-8"
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 28, scale: 0.96 }}
@@ -71,7 +71,7 @@ export default function ContactModal({ open, onClose }) {
           >
             <div className="flex items-start justify-between">
               <div>
-                <Eyebrow>Book a trip</Eyebrow>
+                <Eyebrow tone="light">Book a trip</Eyebrow>
                 <StackedLines
                   lines={['Come find', 'your wave']}
                   className="mt-3 font-display text-4xl font-medium leading-[0.95] tracking-tight sm:text-5xl"
@@ -82,7 +82,7 @@ export default function ContactModal({ open, onClose }) {
               <motion.button
                 aria-label="Close"
                 onClick={onClose}
-                className="grid size-10 shrink-0 place-items-center rounded-full bg-sand hover:bg-hairline"
+                className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 hover:bg-white/20"
                 whileHover="hover"
                 initial="rest"
                 animate="rest"
@@ -94,7 +94,7 @@ export default function ContactModal({ open, onClose }) {
             </div>
 
             {status !== 'done' ? (
-              <form onSubmit={handleSubmit} noValidate className="mt-7 flex flex-col gap-4">
+              <form onSubmit={handleSubmit} noValidate className="mt-3 flex flex-col gap-3">
                 <Field label="Full name" name="name" placeholder="Alex Rivera" inputRef={nameRef} />
                 <Field label="Email" name="email" type="email" placeholder="you@email.com" />
                 <Field
@@ -107,23 +107,23 @@ export default function ContactModal({ open, onClose }) {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className="mt-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-white transition-colors hover:bg-ocean-deep disabled:opacity-60"
+                  className="mt-2 rounded-full bg-sun px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-coral disabled:opacity-60"
                 >
                   {status === 'sending' ? 'Sending…' : 'Request a trip'}
                 </button>
               </form>
             ) : (
-              <div className="mt-8 rounded-3xl bg-sand p-6 text-center">
+              <div className="mt-8 rounded-3xl bg-sand-deep p-6 text-center">
                 <div className="mx-auto grid size-12 place-items-center rounded-full bg-ocean text-white">
                   <Check className="h-5 w-5" />
                 </div>
                 <p className="mt-4 text-lg font-medium">Request received</p>
-                <p className="mt-2 text-sm text-ink-soft">
+                <p className="mt-2 text-sm text-white/70">
                   Thanks, {firstName || 'there'} — our crew will reach out to lock in your swell window.
                 </p>
                 <button
                   onClick={onClose}
-                  className="mt-6 rounded-full bg-ink px-7 py-3 text-sm font-medium uppercase tracking-wide text-white hover:bg-ocean-deep"
+                  className="mt-6 rounded-full bg-sun px-7 py-3 text-sm font-medium uppercase tracking-wide text-ocean-deep hover:bg-coral"
                 >
                   Done
                 </button>
@@ -141,14 +141,14 @@ function Field({ label, name, type = 'text', placeholder, as = 'input', rows, in
   const Comp = as;
   return (
     <label className="block">
-      <span className="text-xs font-medium uppercase tracking-[0.18em] text-ink-soft">{label}</span>
+      <span className="text-xs font-medium uppercase tracking-[0.18em] text-white/70">{label}</span>
       <Comp
         ref={inputRef}
         name={name}
         type={as === 'input' ? type : undefined}
         rows={rows}
         placeholder={placeholder}
-        className="mt-2 w-full rounded-xl border border-hairline bg-sand px-4 py-3 text-sm outline-none transition-colors focus:border-ocean-light"
+        className="mt-2 w-full rounded-xl border border-white/15 bg-sand-deep px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/40 focus:border-ocean-light"
       />
     </label>
   );

@@ -1,15 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Header from './Header';
 import SurfScene from './SurfScene';
-import { WordReveal, StackedLines } from './RevealText';
-import { Dots } from './UI';
+import { TypeWriter, StackedLines } from './RevealText';
+import { Dots, PillButton } from './UI';
+import { scrollToId } from '../hooks/useLenis';
 
-const TRIPS = [
-  { tag: 'Featured Trip', title: 'Sunset Reef Break', cta: 'See the swell forecast' },
-  { tag: 'New Route', title: 'Island Boat Charters', cta: 'View the charter' },
-  { tag: 'Youth Program', title: 'Junior Grom Camp', cta: 'Browse camps' },
-];
 
 function TripSlider({ ready }) {
   const [index, setIndex] = useState(0);
@@ -57,79 +53,77 @@ function TripSlider({ ready }) {
   );
 }
 
-function StatCard({ ready }) {
-  return (
-    <motion.article
-      className="flex w-full max-w-xs items-stretch gap-3 rounded-3xl border border-white/15 bg-white/10 p-3 shadow-lg shadow-ocean-deep/20 backdrop-blur sm:max-w-60"
-      initial={{ opacity: 0, y: 28 }}
-      animate={ready ? { opacity: 1, y: 0 } : {}}
-      transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.78 }}
-    >
-      <div className="flex flex-col justify-between">
-        <span className="text-3xl font-medium leading-none">12K+</span>
-        <div className="-space-x-2 flex">
-          {['#FF6A4D', '#F2B705', '#4FA69B', '#FFFFFF'].map((c, i) => (
-            <span
-              key={i}
-              className="size-5 rounded-full border border-ocean-deep/40"
-              style={{ background: c }}
-            />
-          ))}
-        </div>
-        <span className="text-[0.65rem] opacity-80">Surfers hosted</span>
-      </div>
-      <div className="ml-auto grid w-16 shrink-0 place-items-center rounded-xl bg-gradient-to-b from-ocean-light to-ocean">
-        <svg viewBox="0 0 24 24" className="size-8 text-white/90" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-          <path d="M4 18c2-3 4 1.5 6-1s3-5 5-2.5 3 1.5 5 0" />
-          <path d="M9 18v3M15 18v3" />
-        </svg>
-      </div>
-    </motion.article>
-  );
-}
 
 export default function Hero({ onOpenMenu, onOpenContact, ready }) {
-  const sectionRef = useRef(null);
+  const wrapperRef = useRef(null);
+
+  // Track scroll across the TALL wrapper, not the sticky section itself.
+  // This is what gives the pinned section real scroll distance to
+  // animate across before it releases to the rest of the page.
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
+    target: wrapperRef,
+    offset: ['start start', 'end end'],
   });
 
+  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
+
   return (
-    <section
-      ref={sectionRef}
-      className="relative isolate flex flex-col overflow-hidden rounded-[2rem] text-white"
-      style={{ height: 'calc(100svh - 1rem)', minHeight: '36rem' }}
-    >
-      <SurfScene progress={scrollYProgress} />
+    // Tall outer container — controls how much scroll distance the
+    // pinned hero eats before releasing to the next section.
+    // 300vh = pinned for ~2 extra screens of scrolling.
+    // Increase (e.g. 400vh) for slower/more deliberate image transitions,
+    // decrease (e.g. 200vh) for a snappier effect.
+    <div ref={wrapperRef} className="relative h-[200vh]">
+      <section
+        className="sticky top-0 isolate flex flex-col overflow-hidden rounded-[2rem] text-white"
+        style={{ height: 'calc(100svh - 1rem)', minHeight: '36rem' }}
+      >
+        <SurfScene progress={scrollYProgress} />
 
-      <Header onOpenMenu={onOpenMenu} onOpenContact={onOpenContact} />
+        <Header onOpenMenu={onOpenMenu} onOpenContact={onOpenContact} />
 
-      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6">
-  <WordReveal
-    as="h1"
-    text="Surf,Beach,Sunset"
-    gate={ready}
-    delayStart={0}
-    stagger={0.14}
-    duration={1.1}
-    className="pointer-events-auto whitespace-nowrap font-display font-medium uppercase leading-[0.85] tracking-tight text-[10.3vw] py-10 px-5 bg-ocean-deep/15 backdrop-blur-[2px] border border-ocean-light/20 rounded-2xl inline-block w-fit"
-  />
-</div>
-
-      <div className="relative z-10 mt-auto flex flex-col gap-6 px-6 pb-8 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:pb-10">
-        <StackedLines
-          lines={['Paddle Out,', 'Wake Up Salty']}
-          className="font-display font-medium uppercase leading-[0.95] tracking-tight text-white/85"
-          stagger={0.11}
-          baseDelay={0.35}
-          duration={0.9}
-        />
-        <div className="flex items-end gap-4">
-          <TripSlider ready={ready} />
-          <StatCard ready={ready} />
+        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-7 px-6">
+          <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-3">
+            <PillButton variant="light" onClick={onOpenContact}>
+              Book your session
+            </PillButton>
+            <button
+              onClick={() => scrollToId('lessons')}
+              className="rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-white backdrop-blur transition-colors hover:bg-white/15"
+            >
+              Explore trips
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div className="relative z-10 mt-auto flex flex-col gap-6 px-6 pb-8 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:pb-10">
+          <StackedLines
+            lines={['Paddle Out,', 'Wake Up Salty']}
+            className="font-display font-medium uppercase leading-[0.95] tracking-tight text-white/85"
+            stagger={0.11}
+            baseDelay={0.35}
+            duration={0.9}
+            />
+          </div>
+
+        <motion.div
+          style={{ opacity: scrollCueOpacity }}
+          className="pointer-events-none absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
+        >
+          <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/70">Scroll</span>
+          <motion.span
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            className="text-sm text-white/70"
+          >
+            &darr;
+          </motion.span>
+        </motion.div>
+
+        <div className="absolute inset-x-0 bottom-0 z-20 h-0.5 bg-white/10">
+          <motion.div className="h-full origin-left bg-sun" style={{ scaleX: scrollYProgress }} />
+        </div>
+      </section>
+    </div>
   );
 }
