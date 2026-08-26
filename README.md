@@ -53,9 +53,9 @@ A scroll-parallaxed showcase of what the outfit offers, framed by oversized
 ghost typography and a marquee of famous breaks.
 
 <p>
-  <img src="public/images/surf/surf10.png" alt="Surf guide session" width="32%">
+  <img src="public/images/surf/surf10.jpg" alt="Surf guide session" width="32%">
   <img src="public/images/activities/activitie2.jpeg" alt="Sunrise yoga by the ocean" width="32%">
-  <img src="public/images/activities/activitie3.png" alt="Quad adventure in the dunes" width="32%">
+  <img src="public/images/activities/activitie3.jpg" alt="Quad adventure in the dunes" width="32%">
 </p>
 
 ### Lessons & trips
@@ -65,8 +65,8 @@ desert tracks, sunset boat cruises, and beds steps from the break.
 
 <p>
   <img src="public/images/surf/surf3.jpeg" alt="Surf lesson in the whitewash" width="32%">
-  <img src="public/images/activities/activitie4.png" alt="Boat trip along the coast" width="32%">
-  <img src="public/images/hostels/hostle1.png" alt="Surf hostel stay" width="32%">
+  <img src="public/images/activities/activitie4.jpg" alt="Boat trip along the coast" width="32%">
+  <img src="public/images/hostels/hostle1.jpg" alt="Surf hostel stay" width="32%">
 </p>
 
 ### By the numbers
@@ -75,7 +75,7 @@ KPI cards with count-up animation, black glassmorphism, and a sun-yellow hover
 border — layered over an aerial shot of the coastline.
 
 <p align="center">
-  <img src="public/images/background/agadir.png" alt="Aerial view of Agadir beach and its bay" width="70%">
+  <img src="public/images/background/agadir.jpg" alt="Aerial view of Agadir beach and its bay" width="70%">
 </p>
 
 ### What travelers say
@@ -83,7 +83,7 @@ border — layered over an aerial shot of the coastline.
 Real words from guests, on frosted black cards over a Taghazout backdrop.
 
 <p align="center">
-  <img src="public/images/background/taghazout.png" alt="Taghazout coastline and surf breaks" width="70%">
+  <img src="public/images/background/taghazout.jpg" alt="Taghazout coastline and surf breaks" width="70%">
 </p>
 
 ### More from the coast
@@ -91,7 +91,7 @@ Real words from guests, on frosted black cards over a Taghazout backdrop.
 <p>
   <img src="public/images/surf/surf5.jpeg" alt="Dawn patrol paddle out" width="32%">
   <img src="public/images/surf/surf6.jpeg" alt="Green wave riding" width="32%">
-  <img src="public/images/hostels/hostle2.png" alt="Hostel common area" width="32%">
+  <img src="public/images/hostels/hostle2.jpg" alt="Hostel common area" width="32%">
 </p>
 
 ---

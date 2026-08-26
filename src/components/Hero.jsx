@@ -1,60 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from './Header';
 import SurfScene from './SurfScene';
-import { TypeWriter, StackedLines } from './RevealText';
-import { Dots, PillButton } from './UI';
+import { StackedLines } from './RevealText';
+import { PillButton } from './UI';
 import { scrollToId } from '../hooks/useLenis';
+import { useI18n } from '../i18n/I18nContext';
 
-
-function TripSlider({ ready }) {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (!ready) return;
-    const t = setInterval(() => setIndex((i) => (i + 1) % TRIPS.length), 3800);
-    return () => clearInterval(t);
-  }, [ready]);
-
-  const trip = TRIPS[index];
-
-  return (
-    <motion.div
-      className="hidden w-64 flex-col gap-3 md:flex"
-      initial={{ opacity: 0, y: 28 }}
-      animate={ready ? { opacity: 1, y: 0 } : {}}
-      transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.65 }}
-    >
-      <div className="relative flex items-center gap-3 rounded-3xl border border-white/15 bg-white/10 p-3 shadow-lg shadow-ocean-deep/20 backdrop-blur">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={index}
-            className="flex w-full items-center gap-3"
-            initial={{ opacity: 0, y: 16, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -16, scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 210, damping: 24 }}
-          >
-            <div className="grid size-14 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-coral to-sun text-white">
-              <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-                <path d="M3 15c2-2.5 4 1 6-1s3-4 5-2 3 1.5 5 0" />
-              </svg>
-            </div>
-            <div className="min-w-0">
-              <p className="text-[0.7rem] font-medium uppercase tracking-wide">{trip.tag}</p>
-              <p className="truncate text-[0.7rem] uppercase opacity-80">{trip.title}</p>
-              <span className="text-[0.65rem] underline underline-offset-2">{trip.cta} &rarr;</span>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-      <Dots count={TRIPS.length} active={index} onSelect={setIndex} tone="light" />
-    </motion.div>
-  );
-}
-
-
-export default function Hero({ onOpenMenu, onOpenContact, ready }) {
+export default function Hero({ onOpenMenu, onOpenContact }) {
+  const { t } = useI18n();
   const wrapperRef = useRef(null);
 
   // Track scroll across the TALL wrapper, not the sticky section itself.
@@ -82,24 +36,24 @@ export default function Hero({ onOpenMenu, onOpenContact, ready }) {
 
         <Header onOpenMenu={onOpenMenu} onOpenContact={onOpenContact} />
 
-        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-7 px-6">
-          <div className="pointer-events-auto flex flex-wrap items-center justify-center gap-3">
-            <PillButton variant="light" onClick={onOpenContact}>
-              Book your session
+        <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 px-4 sm:gap-7 sm:px-6">
+          <div className="pointer-events-auto flex w-full max-w-sm flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
+            <PillButton variant="light" onClick={onOpenContact} className="justify-center">
+              {t.hero.bookSession}
             </PillButton>
             <button
               onClick={() => scrollToId('lessons')}
               className="rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-white backdrop-blur transition-colors hover:bg-white/15"
             >
-              Explore trips
+              {t.hero.exploreTrips}
             </button>
           </div>
         </div>
 
         <div className="relative z-10 mt-auto flex flex-col gap-6 px-6 pb-8 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:pb-10">
           <StackedLines
-            lines={['Paddle Out,', 'Wake Up Salty']}
-            className="font-display font-medium uppercase leading-[0.95] tracking-tight text-white/85"
+            lines={t.hero.titleLines}
+            className="font-display text-4xl font-medium uppercase leading-[0.95] tracking-tight text-white/85 sm:text-6xl lg:text-7xl"
             stagger={0.11}
             baseDelay={0.35}
             duration={0.9}
@@ -110,7 +64,7 @@ export default function Hero({ onOpenMenu, onOpenContact, ready }) {
           style={{ opacity: scrollCueOpacity }}
           className="pointer-events-none absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
         >
-          <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/70">Scroll</span>
+          <span className="text-[0.6rem] uppercase tracking-[0.3em] text-white/70">{t.hero.scroll}</span>
           <motion.span
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
@@ -121,7 +75,7 @@ export default function Hero({ onOpenMenu, onOpenContact, ready }) {
         </motion.div>
 
         <div className="absolute inset-x-0 bottom-0 z-20 h-0.5 bg-white/10">
-          <motion.div className="h-full origin-left bg-sun" style={{ scaleX: scrollYProgress }} />
+          <motion.div className="h-full origin-left rtl:origin-right bg-sun" style={{ scaleX: scrollYProgress }} />
         </div>
       </section>
     </div>

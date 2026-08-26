@@ -1,0 +1,529 @@
+export const LANGS = [
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'ar', label: 'العربية', flag: '🇲🇦' },
+];
+
+const en = {
+  topbar: {
+    messages: [
+      'Free gear rental with every lesson',
+      'Boat charters departing daily at sunrise',
+      'Grom Camp summer spots are open',
+      'Book 3 sessions, get the 4th free',
+    ],
+  },
+  header: {
+    lessonsCoaches: 'Lessons & Coaches',
+    bookTrip: 'Book a Trip',
+    openMenu: 'Open menu',
+  },
+  hero: {
+    bookSession: 'Book your session',
+    exploreTrips: 'Explore trips',
+    titleLines: ['Paddle Out,', 'Wake Up Salty'],
+    scroll: 'Scroll',
+  },
+  ticker: {
+    spots: ['Taghazout', 'Anchor Point', 'Panorama', 'Agadir'],
+    percent: '100%',
+    percentLabel: 'Trips shaped around your level',
+    prev: 'Previous section',
+    next: 'Next section',
+    slides: [
+      {
+        headline: ['Beach', 'Vibes,', 'Enjoy', 'Surf'],
+        title: 'Surf',
+        cardTitle: 'Ride your first wave',
+        cardDescription:
+          'Daily surf coaching for every level — warm local guides, small groups, and the best breaks picked for you each morning.',
+      },
+      {
+        headline: ['Yoga', 'Sport,', 'Client', 'First'],
+        title: 'Yoga Sessions',
+        cardTitle: 'Flow with the ocean',
+        cardDescription:
+          'Sunrise and sunset yoga on the terrace — stretch, breathe, and recover between sessions with the sound of the waves.',
+      },
+      {
+        headline: ['Desert', 'Trails,', 'Quad', 'Rides'],
+        title: 'Quad Adventures',
+        cardTitle: 'Ride the dunes',
+        cardDescription:
+          'Quad trips through desert tracks and coastal trails — golden dunes, hidden viewpoints, and pure adventure.',
+      },
+      {
+        headline: ['Rest', 'Easy,', 'Surf', 'Early'],
+        title: 'Hostel',
+        cardTitle: 'Stay where the waves are',
+        cardDescription:
+          'Beds steps from the break — salty mornings, sunset sessions, and a crew that feels like family by day two.',
+      },
+    ],
+  },
+  lessons: {
+    ariaLabel: 'Lessons and trips',
+    panels: [
+      {
+        label: 'Surf Lessons',
+        description: 'From first paddle-out to green waves',
+        links: [
+          { name: 'Grom Camp', note: 'Ages 6–14' },
+          { name: 'Adult Lessons', note: 'Small groups' },
+          { name: 'Private Guiding', note: 'One-on-one' },
+        ],
+      },
+      {
+        label: 'Quad Trips',
+        description: 'Coastal tracks & cliff-top views',
+        links: [
+          { name: 'Sunset Dune Run', note: 'Golden hour' },
+          { name: 'Paradise Valley Ride', note: 'Swim stop' },
+        ],
+      },
+      {
+        label: 'Boat Trips',
+        description: 'Hidden coves & sunsets at sea',
+        links: [
+          { name: 'Sunset Coast Cruise', note: 'Mint tea on deck' },
+          { name: 'Snorkel & Hidden Coves', note: 'Fresh fish lunch' },
+        ],
+      },
+      {
+        label: 'Surf Hostel',
+        description: 'Beds steps from the break',
+        links: [
+          { name: 'Shared Dorm', note: 'Meet the crew' },
+          { name: 'Private Room', note: 'Ocean view' },
+          { name: 'Surf & Stay Pack', note: 'Bed + lessons' },
+        ],
+      },
+    ],
+  },
+  stats: {
+    eyebrow: 'By the numbers',
+    titleLines: ['A crew that', 'knows the tide'],
+    items: [
+      { value: '3+', label: 'Local guides on call' },
+      { value: '4+', label: 'Signature breaks' },
+      { value: '1+', label: 'Surfer Coach' },
+      { value: '2+', label: 'Years chasing swell' },
+    ],
+  },
+  testimonials: {
+    eyebrow: 'What travelers say',
+    titleLines: ['Loved by', 'the whole lineup'],
+    starsAria: '5 out of 5 stars',
+    quotes: [
+      {
+        quote:
+          'I paddled out nervous and left carving the point break with a crew I still text. Best week of the trip.',
+        name: 'Priya Anand',
+        role: 'Advanced Squad',
+      },
+      {
+        quote: 'The guides read the reef like a map. Safest and most fun surf trip I have ever booked.',
+        name: 'Lukas Brenner',
+        role: 'Adult Lessons',
+      },
+      {
+        quote: 'My daughter went from scared of whitewash to riding green waves in five days. Worth every minute.',
+        name: 'Dana Okafor',
+        role: 'Parent, Grom Camp',
+      },
+    ],
+  },
+  footer: {
+    getStarted: 'Get started',
+    titleLines: ['Ready to', 'paddle out?'],
+    bookTrip: 'Book a Trip',
+    blurb:
+      'A boutique surf outfit running guided trips, lessons, and coastal stays where the swell forecast actually holds up.',
+    addressLine: '14 Shoreline Ave, Wave Bay',
+    columns: [
+      { heading: 'Lessons', links: ['Grom Camp', 'Advanced Squad', 'Adult Lessons', 'Private Guiding'] },
+      { heading: 'Trips', links: ['Boat Charters', 'Breaks', 'Events', 'Gear Shop'] },
+      { heading: 'Company', links: ['About', 'Guides', 'Careers', 'Contact'] },
+    ],
+    social: ['Instagram', 'X', 'YouTube', 'TikTok'],
+    legal: ['Privacy', 'Terms'],
+    copyright: '© 2026 Ziggiz Surf Co. All rights reserved.',
+    backToTop: 'Back to top',
+  },
+  contact: {
+    eyebrow: 'Book a trip',
+    titleLines: ['Come find', 'your wave'],
+    close: 'Close',
+    nameLabel: 'Full name',
+    namePlaceholder: 'Alex Rivera',
+    emailLabel: 'Email',
+    emailPlaceholder: 'you@email.com',
+    messageLabel: 'What would you like to surf?',
+    messagePlaceholder: 'I’d love to try a private reef session on the south point…',
+    submit: 'Request a trip',
+    submitting: 'Sending…',
+    doneTitle: 'Request received',
+    doneThanks: 'Thanks, {name} —',
+    doneBody: 'our crew will reach out to lock in your swell window.',
+    doneButton: 'Done',
+  },
+  menu: {
+    links: ['Lessons', 'Spots', 'Reviews', 'Contact'],
+    bookTrip: 'Book a Trip',
+    closeMenu: 'Close menu',
+    social: ['Instagram', 'X', 'YouTube', 'TikTok'],
+  },
+  lang: {
+    switch: 'Change language',
+  },
+};
+
+const fr = {
+  topbar: {
+    messages: [
+      'Location de matériel gratuite avec chaque cours',
+      'Sorties en bateau tous les jours au lever du soleil',
+      'Les places d’été du Grom Camp sont ouvertes',
+      'Réservez 3 sessions, la 4ᵉ est offerte',
+    ],
+  },
+  header: {
+    lessonsCoaches: 'Cours & Coaches',
+    bookTrip: 'Réserver un voyage',
+    openMenu: 'Ouvrir le menu',
+  },
+  hero: {
+    bookSession: 'Réservez votre session',
+    exploreTrips: 'Explorer les voyages',
+    titleLines: ['À l’eau,', 'Réveil salé'],
+    scroll: 'Défiler',
+  },
+  ticker: {
+    spots: ['Taghazout', 'Anchor Point', 'Panorama', 'Agadir'],
+    percent: '100%',
+    percentLabel: 'Des voyages façonnés à votre niveau',
+    prev: 'Section précédente',
+    next: 'Section suivante',
+    slides: [
+      {
+        headline: ['Plage', 'Ambiance,', 'Profite', 'Surf'],
+        title: 'Surf',
+        cardTitle: 'Domptez votre première vague',
+        cardDescription:
+          'Coaching de surf quotidien pour tous niveaux — guides locaux chaleureux, petits groupes, et les meilleurs spots choisis chaque matin.',
+      },
+      {
+        headline: ['Yoga', 'Sport,', 'Client', 'D’abord'],
+        title: 'Sessions de yoga',
+        cardTitle: 'En phase avec l’océan',
+        cardDescription:
+          'Yoga au lever et au coucher du soleil sur la terrasse — étirez-vous, respirez et récupérez entre les sessions au son des vagues.',
+      },
+      {
+        headline: ['Désert', 'Pistes,', 'Quad', 'Balades'],
+        title: 'Aventures quad',
+        cardTitle: 'Parcourez les dunes',
+        cardDescription:
+          'Sorties quad sur pistes désertiques et sentiers côtiers — dunes dorées, points de vue cachés et aventure pure.',
+      },
+      {
+        headline: ['Repos', 'Tranquille,', 'Surf', 'Matinal'],
+        title: 'Auberge',
+        cardTitle: 'Dormez là où sont les vagues',
+        cardDescription:
+          'Des lits à deux pas du spot — matins salés, sessions au coucher du soleil, et une équipe qui devient famille dès le deuxième jour.',
+      },
+    ],
+  },
+  lessons: {
+    ariaLabel: 'Cours et voyages',
+    panels: [
+      {
+        label: 'Cours de surf',
+        description: 'De la première rame aux vagues vertes',
+        links: [
+          { name: 'Grom Camp', note: '6–14 ans' },
+          { name: 'Cours adultes', note: 'Petits groupes' },
+          { name: 'Guidage privé', note: 'Un à un' },
+        ],
+      },
+      {
+        label: 'Sorties quad',
+        description: 'Pistes côtières & vues des falaises',
+        links: [
+          { name: 'Dunes au couchant', note: 'Heure dorée' },
+          { name: 'Vallée du Paradis', note: 'Pause baignade' },
+        ],
+      },
+      {
+        label: 'Sorties bateau',
+        description: 'Criques cachées & couchers de soleil en mer',
+        links: [
+          { name: 'Croisière au couchant', note: 'Thé à la menthe à bord' },
+          { name: 'Snorkel & criques', note: 'Déjeuner poisson frais' },
+        ],
+      },
+      {
+        label: 'Auberge surf',
+        description: 'Des lits à deux pas du spot',
+        links: [
+          { name: 'Dortoir partagé', note: 'Rencontrez l’équipe' },
+          { name: 'Chambre privée', note: 'Vue océan' },
+          { name: 'Pack Surf & Séjour', note: 'Lit + cours' },
+        ],
+      },
+    ],
+  },
+  stats: {
+    eyebrow: 'En chiffres',
+    titleLines: ['Une équipe qui', 'connaît la marée'],
+    items: [
+      { value: '3+', label: 'Guides locaux disponibles' },
+      { value: '4+', label: 'Spots signature' },
+      { value: '1+', label: 'Coach de surf' },
+      { value: '2+', label: 'Années à chasser la houle' },
+    ],
+  },
+  testimonials: {
+    eyebrow: 'Ce que disent les voyageurs',
+    titleLines: ['Adoré par', 'toute la ligne'],
+    starsAria: '5 étoiles sur 5',
+    quotes: [
+      {
+        quote:
+          'Je suis partie stressée et je suis revenue en carve sur le point break avec une équipe que je texte encore. La meilleure semaine du voyage.',
+        name: 'Priya Anand',
+        role: 'Squad avancé',
+      },
+      {
+        quote: 'Les guides lisent le récif comme une carte. Le séjour surf le plus sûr et le plus fun que j’aie réservé.',
+        name: 'Lukas Brenner',
+        role: 'Cours adultes',
+      },
+      {
+        quote: 'Ma fille est passée de la peur de l’écume aux vagues vertes en cinq jours. Chaque minute en valait la peine.',
+        name: 'Dana Okafor',
+        role: 'Parent, Grom Camp',
+      },
+    ],
+  },
+  footer: {
+    getStarted: 'Commencer',
+    titleLines: ['Prêt à', 'partir à l’eau ?'],
+    bookTrip: 'Réserver un voyage',
+    blurb:
+      'Une petite structure de surf organisant des voyages guidés, des cours et des séjours côtiers où les prévisions de houle tiennent vraiment leurs promesses.',
+    addressLine: '14 Shoreline Ave, Wave Bay',
+    columns: [
+      { heading: 'Cours', links: ['Grom Camp', 'Squad avancé', 'Cours adultes', 'Guidage privé'] },
+      { heading: 'Voyages', links: ['Sorties bateau', 'Spots', 'Événements', 'Boutique'] },
+      { heading: 'Entreprise', links: ['À propos', 'Guides', 'Carrières', 'Contact'] },
+    ],
+    social: ['Instagram', 'X', 'YouTube', 'TikTok'],
+    legal: ['Confidentialité', 'Conditions'],
+    copyright: '© 2026 Ziggiz Surf Co. Tous droits réservés.',
+    backToTop: 'Retour en haut',
+  },
+  contact: {
+    eyebrow: 'Réserver un voyage',
+    titleLines: ['Venez trouver', 'votre vague'],
+    close: 'Fermer',
+    nameLabel: 'Nom complet',
+    namePlaceholder: 'Alex Rivera',
+    emailLabel: 'E-mail',
+    emailPlaceholder: 'vous@email.com',
+    messageLabel: 'Que souhaitez-vous surfer ?',
+    messagePlaceholder: 'J’aimerais une session privée sur le récif du point sud…',
+    submit: 'Demander un voyage',
+    submitting: 'Envoi…',
+    doneTitle: 'Demande reçue',
+    doneThanks: 'Merci, {name} —',
+    doneBody: 'notre équipe vous contactera pour caler votre fenêtre de houle.',
+    doneButton: 'Terminé',
+  },
+  menu: {
+    links: ['Cours', 'Spots', 'Avis', 'Contact'],
+    bookTrip: 'Réserver un voyage',
+    closeMenu: 'Fermer le menu',
+    social: ['Instagram', 'X', 'YouTube', 'TikTok'],
+  },
+  lang: {
+    switch: 'Changer de langue',
+  },
+};
+
+const ar = {
+  topbar: {
+    messages: [
+      'كراء المعدات مجاناً مع كل درس',
+      'رحلات القارب تنطلق يومياً عند شروق الشمس',
+      'أماكن مخيم الصيف للأطفال مفتوحة الآن',
+      'احجز 3 جلسات واحصل على الرابعة مجاناً',
+    ],
+  },
+  header: {
+    lessonsCoaches: 'الدروس والمدربون',
+    bookTrip: 'احجز رحلة',
+    openMenu: 'افتح القائمة',
+  },
+  hero: {
+    bookSession: 'احجز جلستك',
+    exploreTrips: 'استكشف الرحلات',
+    titleLines: ['انطلق إلى الموج', 'استيقظ على ملوحة البحر'],
+    scroll: 'مرّر',
+  },
+  ticker: {
+    spots: ['تغازوت', 'أنكور بوينت', 'بانوراما', 'أكادير'],
+    percent: '100%',
+    percentLabel: 'رحلات مصممة حول مستواك',
+    prev: 'القسم السابق',
+    next: 'القسم التالي',
+    slides: [
+      {
+        headline: ['شاطئ', 'أجواء،', 'استمتع', 'سيرف'],
+        title: 'سيرف',
+        cardTitle: 'اركب أول موجة لك',
+        cardDescription:
+          'تدريب يومي على ركوب الأمواج لكل المستويات — مرشدون محليون ودودون، مجموعات صغيرة، وأفضل النقاط تُختار لك كل صباح.',
+      },
+      {
+        headline: ['يوغا', 'رياضة،', 'الزبون', 'أولاً'],
+        title: 'جلسات يوغا',
+        cardTitle: 'انسَ مع المحيط',
+        cardDescription:
+          'يوغا عند الشروق والغروب على السطح — تمدّد، تنفّس، واستعد بين الجلسات على صوت الأمواج.',
+      },
+      {
+        headline: ['صحراء', 'مسارات،', 'كواد', 'مغامرات'],
+        title: 'مغامرات الكواد',
+        cardTitle: 'جول بين الكثبان',
+        cardDescription:
+          'رحلات كواد عبر مسارات صحراوية وساحلية — كثبان ذهبية، إطلالات خفية، ومغامرة خالصة.',
+      },
+      {
+        headline: ['استرح', 'بهدوء،', 'سيرف', 'باكراً'],
+        title: 'النُزُل',
+        cardTitle: 'أقم حيث تكون الموجات',
+        cardDescription:
+          'أسرّة على بعد خطوات من الموج — صباحات مالحة، جلسات عند الغروب، ورفقة تشعر معها أنك بين عائلتك من اليوم الثاني.',
+      },
+    ],
+  },
+  lessons: {
+    ariaLabel: 'الدروس والرحلات',
+    panels: [
+      {
+        label: 'دروس السيرف',
+        description: 'من أول دفعة مجداف إلى الموجات الخضراء',
+        links: [
+          { name: 'مخيم الأطفال', note: '6–14 سنة' },
+          { name: 'دروس الكبار', note: 'مجموعات صغيرة' },
+          { name: 'إرشاد خاص', note: 'فردي' },
+        ],
+      },
+      {
+        label: 'رحلات الكواد',
+        description: 'مسارات ساحلية وإطلالات من أعالي المنحدرات',
+        links: [
+          { name: 'جولة الكثبان عند الغروب', note: 'الساعة الذهبية' },
+          { name: 'جولة وادي الجنة', note: 'توقف للسباحة' },
+        ],
+      },
+      {
+        label: 'رحلات القارب',
+        description: 'خلجان خفية وغروب في عرض البحر',
+        links: [
+          { name: 'رحلة الساحل عند الغروب', note: 'شاي بالنعناع على السطح' },
+          { name: 'غوص وخلجان خفية', note: 'غداء سمك طازج' },
+        ],
+      },
+      {
+        label: 'نُزُل السيرف',
+        description: 'أسرّة على بعد خطوات من الموج',
+        links: [
+          { name: 'غرفة مشتركة', note: 'تعرّف على الفريق' },
+          { name: 'غرفة خاصة', note: 'إطلالة على المحيط' },
+          { name: 'باقة سيرف وإقامة', note: 'سرير + دروس' },
+        ],
+      },
+    ],
+  },
+  stats: {
+    eyebrow: 'بالأرقام',
+    titleLines: ['فريق يعرف', 'إيقاع المد'],
+    items: [
+      { value: '3+', label: 'مرشدون محليون جاهزون' },
+      { value: '4+', label: 'نقاط موج مميزة' },
+      { value: '1+', label: 'مدرب سيرف' },
+      { value: '2+', label: 'سنوات في مطاردة الموج' },
+    ],
+  },
+  testimonials: {
+    eyebrow: 'ماذا يقول المسافرون',
+    titleLines: ['أحبّه', 'كلُّ من في الماء'],
+    starsAria: '5 من 5 نجوم',
+    quotes: [
+      {
+        quote:
+          'خرجتُ إلى الماء متوترة وخرجتُ أركب نقطة الموج مع فريق ما زلت أراسله حتى الآن. أفضل أسبوع في الرحلة.',
+        name: 'بريا أناند',
+        role: 'الفريق المتقدم',
+      },
+      {
+        quote: 'المرشدون يقرؤون الشعاب كأنها خريطة. أأمن وأمتع رحلة سيرف حجزتها على الإطلاق.',
+        name: 'لوكاس برينر',
+        role: 'دروس الكبار',
+      },
+      {
+        quote: 'ابنتي انتقلت من الخوف من الزبد إلى ركوب الموجات الخضراء في خمسة أيام. تستحق كل دقيقة.',
+        name: 'دانا أوكافور',
+        role: 'والدة، مخيم الأطفال',
+      },
+    ],
+  },
+  footer: {
+    getStarted: 'ابدأ الآن',
+    titleLines: ['جاهز', 'للانطلاق إلى الموج؟'],
+    bookTrip: 'احجز رحلة',
+    blurb:
+      'مجموعة سيرف صغيرة تنظّم رحلات مرشدة ودروساً وإقامات ساحلية حيث تتحقق توقعات الموج فعلاً.',
+    addressLine: '14 شارع الشاطئ، خليج الموج',
+    columns: [
+      { heading: 'الدروس', links: ['مخيم الأطفال', 'الفريق المتقدم', 'دروس الكبار', 'إرشاد خاص'] },
+      { heading: 'الرحلات', links: ['كراء القوارب', 'النقاط', 'الفعاليات', 'متجر المعدات'] },
+      { heading: 'الشركة', links: ['من نحن', 'المرشدون', 'الوظائف', 'اتصل بنا'] },
+    ],
+    social: ['إنستغرام', 'إكس', 'يوتيوب', 'تيك توك'],
+    legal: ['الخصوصية', 'الشروط'],
+    copyright: '© 2026 زيغيز سيرف. جميع الحقوق محفوظة.',
+    backToTop: 'العودة إلى الأعلى',
+  },
+  contact: {
+    eyebrow: 'احجز رحلة',
+    titleLines: ['تعالَ وابحث', 'عن موجتك'],
+    close: 'إغلاق',
+    nameLabel: 'الاسم الكامل',
+    namePlaceholder: 'أليكس ريفيرا',
+    emailLabel: 'البريد الإلكتروني',
+    emailPlaceholder: 'you@email.com',
+    messageLabel: 'ماذا تود أن تركب؟',
+    messagePlaceholder: 'أود تجربة جلسة خاصة على الشعاب في النقطة الجنوبية…',
+    submit: 'اطلب رحلة',
+    submitting: 'جارٍ الإرسال…',
+    doneTitle: 'تم استلام الطلب',
+    doneThanks: 'شكرا، {name} —',
+    doneBody: 'سيتواصل معك فريقنا لتحديد نافذة الموج المناسبة لك.',
+    doneButton: 'تم',
+  },
+  menu: {
+    links: ['الدروس', 'النقاط', 'التقييمات', 'اتصل بنا'],
+    bookTrip: 'احجز رحلة',
+    closeMenu: 'أغلق القائمة',
+    social: ['إنستغرام', 'إكس', 'يوتيوب', 'تيك توك'],
+  },
+  lang: {
+    switch: 'غيّر اللغة',
+  },
+};
+
+export const translations = { en, fr, ar };

@@ -5,8 +5,10 @@ import { X, Check } from 'lucide-react';
 import { Eyebrow } from './UI';
 import { StackedLines } from './RevealText';
 import { lockScroll, unlockScroll } from '../hooks/useLenis';
+import { useI18n } from '../i18n/I18nContext';
 
 export default function ContactModal({ open, onClose }) {
+  const { t } = useI18n();
   const nameRef = useRef(null);
   const [status, setStatus] = useState('idle'); // idle | sending | done
   const [firstName, setFirstName] = useState('');
@@ -62,7 +64,7 @@ export default function ContactModal({ open, onClose }) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label="Book a trip"
+            aria-label={t.contact.eyebrow}
             className="relative max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-3xl bg-ocean-deep p-6 text-white shadow-2xl shadow-black/40 sm:p-8"
             initial={{ opacity: 0, y: 28, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -71,16 +73,16 @@ export default function ContactModal({ open, onClose }) {
           >
             <div className="flex items-start justify-between">
               <div>
-                <Eyebrow tone="light">Book a trip</Eyebrow>
+                <Eyebrow tone="light">{t.contact.eyebrow}</Eyebrow>
                 <StackedLines
-                  lines={['Come find', 'your wave']}
+                  lines={t.contact.titleLines}
                   className="mt-3 font-display text-4xl font-medium leading-[0.95] tracking-tight sm:text-5xl"
                   stagger={0.09}
                   duration={0.8}
                 />
               </div>
               <motion.button
-                aria-label="Close"
+                aria-label={t.contact.close}
                 onClick={onClose}
                 className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 hover:bg-white/20"
                 whileHover="hover"
@@ -95,21 +97,21 @@ export default function ContactModal({ open, onClose }) {
 
             {status !== 'done' ? (
               <form onSubmit={handleSubmit} noValidate className="mt-3 flex flex-col gap-3">
-                <Field label="Full name" name="name" placeholder="Alex Rivera" inputRef={nameRef} />
-                <Field label="Email" name="email" type="email" placeholder="you@email.com" />
+                <Field label={t.contact.nameLabel} name="name" placeholder={t.contact.namePlaceholder} inputRef={nameRef} />
+                <Field label={t.contact.emailLabel} name="email" type="email" placeholder={t.contact.emailPlaceholder} />
                 <Field
-                  label="What would you like to surf?"
+                  label={t.contact.messageLabel}
                   name="message"
                   as="textarea"
                   rows={3}
-                  placeholder="I'd love to try a private reef session on the south point…"
+                  placeholder={t.contact.messagePlaceholder}
                 />
                 <button
                   type="submit"
                   disabled={status === 'sending'}
                   className="mt-2 rounded-full bg-sun px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-coral disabled:opacity-60"
                 >
-                  {status === 'sending' ? 'Sending…' : 'Request a trip'}
+                  {status === 'sending' ? t.contact.submitting : t.contact.submit}
                 </button>
               </form>
             ) : (
@@ -117,15 +119,16 @@ export default function ContactModal({ open, onClose }) {
                 <div className="mx-auto grid size-12 place-items-center rounded-full bg-ocean text-white">
                   <Check className="h-5 w-5" />
                 </div>
-                <p className="mt-4 text-lg font-medium">Request received</p>
+                <p className="mt-4 text-lg font-medium">{t.contact.doneTitle}</p>
                 <p className="mt-2 text-sm text-white/70">
-                  Thanks, {firstName || 'there'} — our crew will reach out to lock in your swell window.
+                  {firstName ? `${t.contact.doneThanks.replace('{name}', firstName)} ` : ''}
+                  {t.contact.doneBody}
                 </p>
                 <button
                   onClick={onClose}
                   className="mt-6 rounded-full bg-sun px-7 py-3 text-sm font-medium uppercase tracking-wide text-ocean-deep hover:bg-coral"
                 >
-                  Done
+                  {t.contact.doneButton}
                 </button>
               </div>
             )}

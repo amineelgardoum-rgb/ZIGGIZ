@@ -2,13 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 import { Eyebrow } from './UI';
 import { StackedLines } from './RevealText';
-
-const STATS = [
-  { value: '3+' ,label: 'Local guides on call' },
-  { value: '4+', label: 'Signature breaks' },
-  { value: '1+', label: 'Surfer Coach' },
-  { value: '2+', label: 'Years chasing swell' },
-];
+import { useI18n } from '../i18n/I18nContext';
 
 function Counter({ value, className }) {
   const ref = useRef(null);
@@ -28,11 +22,12 @@ function Counter({ value, className }) {
 }
 
 export default function Stats() {
+  const { t } = useI18n();
   return (
     <section
       id="stats"
       style={{
-        backgroundImage: "url('/images/background/agadir.png')",
+        backgroundImage: "url('/images/background/agadir.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -47,17 +42,17 @@ export default function Stats() {
       <div className="mx-auto mt-4  max-w-5xl">
         <div className="flex flex-col items-center text-center">
           <span className="inline-flex rounded-full border border-white/15 bg-black/30 px-4 py-2 backdrop-blur-md">
-            <Eyebrow tone="light">By the numbers</Eyebrow>
+            <Eyebrow tone="light">{t.stats.eyebrow}</Eyebrow>
           </span>
           <StackedLines
-            lines={['A crew that', 'knows the tide']}
-            className="mt-4 font-display text-5xl font-medium leading-[0.95] tracking-tight sm:text-6xl"
+            lines={t.stats.titleLines}
+            className="mt-4 font-display text-4xl font-medium leading-[0.95] tracking-tight sm:text-6xl"
           />
         </div>
       </div>
 
       <dl className="mt-5 grid w-full grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
-        {STATS.map((s, i) => (
+        {t.stats.items.map((s, i) => (
           <motion.div
             key={s.label}
             className="group flex flex-col items-center rounded-xl border border-white/15 bg-black/30 p-6 text-center backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-colors duration-300 hover:border-sun/60 cursor-pointer transition-transform  ease-out hover:-translate-y-2 "

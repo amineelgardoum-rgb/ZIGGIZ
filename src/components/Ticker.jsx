@@ -1,49 +1,29 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ArrowButton } from './UI';
+import { useI18n } from '../i18n/I18nContext';
 
 const SLIDES = [
   {
-    headline: ['Beach', 'Vibes,', 'Enjoy', 'Surf'],
     variant: 'crew',
-    title: 'Surf',
-    image: '/images/surf/surf10.png',
-    cardTitle: 'Ride your first wave',
-    cardDescription:
-      'Daily surf coaching for every level — warm local guides, small groups, and the best breaks picked for you each morning.',
+    image: '/images/surf/surf10.jpg',
   },
   {
-    headline: ['Yoga', 'Sport,', 'Client', 'First'],
     variant: 'reef',
-    title: 'Yoga Sessions',
     image: '/images/activities/activitie2.jpeg',
-    cardTitle: 'Flow with the ocean',
-    cardDescription:
-      'Sunrise and sunset yoga on the terrace — stretch, breathe, and recover between sessions with the sound of the waves.',
   },
   {
-    headline: ['Desert', 'Trails,', 'Quad', 'Rides'],
     variant: 'quad',
-    title: 'Quad Adventures',
-    image: '/images/activities/activitie3.png',
-    cardTitle: 'Ride the dunes',
-    cardDescription:
-      'Quad trips through desert tracks and coastal trails — golden dunes, hidden viewpoints, and pure adventure.',
+    image: '/images/activities/activitie3.jpg',
   },
   {
-    headline: ['Rest', 'Easy,', 'Surf', 'Early'],
     variant: 'hostel',
-    title: 'Hostel',
-    image: '/images/hostels/hostle1.png',
-    cardTitle: 'Stay where the waves are',
-    cardDescription:
-      'Beds steps from the break — salty mornings, sunset sessions, and a crew that feels like family by day two.',
+    image: '/images/hostels/hostle1.jpg',
   },
 ];
 
-const SPOTS = ['Taghazout', 'Anchor Point', 'Panorama','Agadir'];
-
 export default function Ticker() {
+  const { t } = useI18n();
   const [[index, dir], setSlide] = useState([0, 0]);
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
@@ -55,29 +35,32 @@ export default function Ticker() {
   const bgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
 
   const slide = SLIDES[index];
+  const copy = t.ticker.slides[index];
   const go = (d) => setSlide(([i]) => [(i + d + SLIDES.length) % SLIDES.length, d]);
 
   return (
     <section
       ref={sectionRef}
       id="guides"
-      className="relative isolate flex min-h-screen scroll-mt-24 flex-col justify-center overflow-hidden rounded-[2rem] bg-sand px-6 py-16 sm:px-10 sm:py-24"
+      className="relative isolate flex min-h-[80vh] scroll-mt-24 flex-col justify-center overflow-hidden rounded-[2rem] bg-sand px-4 py-12 sm:min-h-screen sm:px-10 sm:py-24"
     >
-      <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem] ">
+      <div className="absolute inset-0 -z-10 overflow-hidden rounded-[2rem]">
         <motion.img
-          src="/images/background/taghazout.png"
+          src="/images/background/taghazout.jpg"
           alt=""
           style={{ y: bgY, scale: 1.15 }}
-          className="h-full w-full "
+          className="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-ocean-deep/60" />
       </div>
 
       <div className="group pointer-events-auto absolute inset-x-6 top-5 z-10 overflow-hidden opacity-70">
         <div
-          className="flex w-max items-center gap-8 whitespace-nowrap text-[0.65rem] uppercase tracking-[0.4em] text-white/60 animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]"
+          className="marquee flex w-max items-center gap-8 whitespace-nowrap text-[0.65rem] uppercase tracking-[0.4em] text-white/60 animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]"
         >
-          {[...SPOTS, ...SPOTS].map((spot, i) => (
+          {[...t.ticker.spots, ...t.ticker.spots].map((spot, i) => (
             <span key={`${spot}-${i}`} className="flex items-center gap-8">
               {spot}
               <span className="size-1 rounded-full bg-ocean-light" />
@@ -95,9 +78,9 @@ export default function Ticker() {
           whileHover={{ scale: 1.06, rotate: -2 }}
           transition={{ type: 'spring', stiffness: 220, damping: 22 }}
         >
-          <span className="block text-2xl font-medium">100%</span>
+          <span className="block text-2xl font-medium">{t.ticker.percent}</span>
           <span className="mx-auto mt-1 block max-w-[7em] text-[0.6rem] text-ink-soft">
-            Trips shaped around your level
+            {t.ticker.percentLabel}
           </span>
         </motion.div>
 
@@ -130,9 +113,9 @@ export default function Ticker() {
               exit={{ opacity: 0, y: -14 }}
               transition={{ duration: 0.25 }}
             >
-              <h3 className="text-lg font-medium">{slide.cardTitle}</h3>
+              <h3 className="text-lg font-medium">{copy.cardTitle}</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-soft">
-                {slide.cardDescription}
+                {copy.cardDescription}
               </p>
             </motion.div>
           </AnimatePresence>
@@ -141,7 +124,7 @@ export default function Ticker() {
 
       <h2
         id="trust-title"
-        className="pointer-events-none bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-6e relative z-0 mx-auto mt-12 max-w-[88rem] select-none text-[8.2vw] font-medium uppercase leading-[1.02] rounded-2xl tracking-tight py-10 px-5"
+        className="pointer-events-none relative z-0 mx-auto mt-8 max-w-[88rem] select-none rounded-2xl border border-white/20 bg-white/10 px-3 py-6 text-[10vw] font-medium uppercase leading-[1.02] tracking-tight backdrop-blur-md sm:mt-12 sm:px-5 sm:py-10 sm:text-[8.2vw]"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -149,8 +132,8 @@ export default function Ticker() {
             className="flex justify-between"
             exit={{ opacity: 0, transition: { duration: 0.25 } }}
           >
-            <RevealGhostWord word={slide.headline[0]} x={xTL} color="#FFF" />
-            <RevealGhostWord word={slide.headline[1]} x={xTR} color="#94aef3" />
+            <RevealGhostWord word={copy.headline[0]} x={xTL} color="#FFF" />
+            <RevealGhostWord word={copy.headline[1]} x={xTR} color="#94aef3" />
           </motion.div>
         </AnimatePresence>
         <AnimatePresence mode="wait">
@@ -159,8 +142,8 @@ export default function Ticker() {
             className="flex justify-between"
             exit={{ opacity: 0, transition: { duration: 0.25 } }}
           >
-            <RevealGhostWord word={slide.headline[2]} x={xBL} color="#000" />
-            <RevealGhostWord word={slide.headline[3]} x={xBR} color="#0036ac" />
+            <RevealGhostWord word={copy.headline[2]} x={xBL} color="#000" />
+            <RevealGhostWord word={copy.headline[3]} x={xBR} color="#0036ac" />
           </motion.div>
         </AnimatePresence>
       </h2>
@@ -168,7 +151,7 @@ export default function Ticker() {
       <div className="relative z-10 mx-auto mt-6 flex justify-center sm:mt-0">
         <div className="sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2">
           <motion.figure
-            className="relative aspect-[3/4] w-64 shrink-0 overflow-hidden rounded-3xl bg-ocean shadow-xl sm:w-72"
+            className="relative aspect-[3/4] w-56 shrink-0 overflow-hidden rounded-3xl bg-ocean shadow-xl sm:w-72"
             animate={{ y: [0, -10, 0], rotate: -6 }}
             transition={{ duration: 6, ease: 'easeInOut', repeat: Infinity }}
             whileHover={{ scale: 1.05, rotate: -2 }}
@@ -184,7 +167,9 @@ export default function Ticker() {
               >
                 <img
                   src={slide.image}
-                  alt={slide.title}
+                  alt={copy.title}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </motion.div>
@@ -199,7 +184,7 @@ export default function Ticker() {
                   transition={{ duration: 0.25 }}
                   className="text-base font-medium"
                 >
-                  {slide.title}
+                  {copy.title}
                 </motion.p>
               </AnimatePresence>
             </figcaption>
@@ -208,8 +193,8 @@ export default function Ticker() {
       </div>
 
       <div className="relative z-20 mt-12 flex items-center justify-between sm:mt-24">
-        <ArrowButton direction="prev" variant="outline" onClick={() => go(-1)} label="Previous section" />
-        <ArrowButton direction="next" variant="outline" onClick={() => go(1)} label="Next section" />
+        <ArrowButton direction="prev" variant="outline" onClick={() => go(-1)} label={t.ticker.prev} />
+        <ArrowButton direction="next" variant="outline" onClick={() => go(1)} label={t.ticker.next} />
       </div>
     </section>
   );

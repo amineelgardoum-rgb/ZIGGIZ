@@ -3,19 +3,17 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import Logo from './Logo';
+import LanguageSwitcher from './LanguageSwitcher';
 import { PillButton } from './UI';
 import { lockScroll, unlockScroll, scrollToId } from '../hooks/useLenis';
+import { useI18n } from '../i18n/I18nContext';
 
-const LINKS = [
-  { label: 'Lessons', href: 'lessons' },
-  { label: 'Spots', href: 'lessons' },
-  { label: 'Reviews', href: 'testimonials' },
-  { label: 'Contact', href: 'contact' },
-];
-
-const SOCIAL = ['Instagram', 'X', 'YouTube', 'TikTok'];
+const LINK_HREFS = ['lessons', 'lessons', 'testimonials', 'contact'];
+const SOCIAL_HREFS = ['instagram', 'x', 'youtube', 'tiktok'];
 
 export default function MenuOverlay({ open, onClose, onOpenContact }) {
+  const { t } = useI18n();
+
   useEffect(() => {
     if (open) lockScroll();
     else unlockScroll();
@@ -59,31 +57,34 @@ export default function MenuOverlay({ open, onClose, onOpenContact }) {
           >
             <div className="flex items-center justify-between p-4 sm:p-8">
               <Logo />
-              <motion.button
-                aria-label="Close menu"
-                onClick={onClose}
-                className="grid size-10 place-items-center rounded-full bg-white/15 hover:bg-white/25"
-                whileHover="hover"
-                initial="rest"
-                animate="rest"
-              >
-                <motion.span variants={{ rest: { rotate: 0 }, hover: { rotate: 90 } }} transition={{ type: 'spring', stiffness: 300, damping: 18 }}>
-                  <X className="h-4 w-4" />
-                </motion.span>
-              </motion.button>
+              <div className="flex items-center gap-3">
+                <LanguageSwitcher />
+                <motion.button
+                  aria-label={t.menu.closeMenu}
+                  onClick={onClose}
+                  className="grid size-10 place-items-center rounded-full bg-white/15 hover:bg-white/25"
+                  whileHover="hover"
+                  initial="rest"
+                  animate="rest"
+                >
+                  <motion.span variants={{ rest: { rotate: 0 }, hover: { rotate: 90 } }} transition={{ type: 'spring', stiffness: 300, damping: 18 }}>
+                    <X className="h-4 w-4" />
+                  </motion.span>
+                </motion.button>
+              </div>
             </div>
 
             <nav className="flex flex-1 flex-col justify-center gap-2 px-4 sm:px-8">
-              {LINKS.map((link, i) => (
+              {t.menu.links.map((label, i) => (
                 <motion.button
-                  key={link.href}
-                  onClick={() => go(link.href)}
-                  className="block text-left font-display text-5xl font-medium tracking-tight transition-colors hover:text-ocean-light sm:text-7xl"
+                  key={LINK_HREFS[i] + label}
+                  onClick={() => go(LINK_HREFS[i])}
+                  className="block text-start font-display text-5xl font-medium tracking-tight transition-colors hover:text-ocean-light sm:text-7xl"
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.12 + i * 0.07 }}
                 >
-                  {link.label}
+                  {label}
                 </motion.button>
               ))}
             </nav>
@@ -96,11 +97,11 @@ export default function MenuOverlay({ open, onClose, onOpenContact }) {
                   setTimeout(onOpenContact, 250);
                 }}
               >
-                Book a Trip
+                {t.menu.bookTrip}
               </PillButton>
               <nav className="flex gap-5 text-sm text-white/70">
-                {SOCIAL.map((s) => (
-                  <a key={s} href={`#${s.toLowerCase()}`} className="hover:text-white">
+                {t.menu.social.map((s, i) => (
+                  <a key={s} href={`#${SOCIAL_HREFS[i]}`} className="hover:text-white">
                     {s}
                   </a>
                 ))}

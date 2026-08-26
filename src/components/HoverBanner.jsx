@@ -11,7 +11,7 @@ export default function HoverBanner({ items, label = 'Items', className = '' }) 
       role="tablist"
       aria-label={label}
       onMouseLeave={() => setActive(null)}
-      className={`flex h-full w-full gap-2 sm:gap-3 ${className}`}
+      className={`flex h-full w-full flex-col gap-2 sm:gap-3 md:flex-row ${className}`}
     >
       {items.map((panel, i) => {
         const isActive = i === active;
@@ -24,11 +24,11 @@ export default function HoverBanner({ items, label = 'Items', className = '' }) 
             aria-label={panel.label}
             onMouseEnter={() => setActive(i)}
             onFocus={() => setActive(i)}
-            onClick={() => setActive(i)}
+            onClick={() => setActive(isActive ? null : i)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                setActive(i);
+                setActive(isActive ? null : i);
               }
             }}
             initial={{ opacity: 0, y: 28 }}
@@ -36,11 +36,13 @@ export default function HoverBanner({ items, label = 'Items', className = '' }) 
             viewport={{ once: true, margin: '-8%' }}
             transition={{ delay: i * 0.09, type: 'spring', stiffness: 170, damping: 26 }}
             style={{ flexGrow: isActive ? 4 : 1, flexBasis: 0 }}
-            className="group relative min-h-0 min-w-0 cursor-pointer overflow-hidden rounded-3xl border border-white/10 shadow-lg shadow-ocean-deep/30 outline-none transition-all duration-500 ease-out focus-visible:border-ocean-light"
+            className="group relative min-h-[4.5rem] min-w-0 cursor-pointer overflow-hidden rounded-3xl border border-white/10 shadow-lg shadow-ocean-deep/30 outline-none transition-all duration-500 ease-out focus-visible:border-ocean-light md:min-h-0"
           >
             <img
               src={panel.image}
               alt={panel.label}
+              loading="lazy"
+              decoding="async"
               className={`absolute inset-0 h-full w-full object-cover transition duration-700 ${
                 isActive
                   ? 'scale-100'
@@ -54,7 +56,7 @@ export default function HoverBanner({ items, label = 'Items', className = '' }) 
             />
 
             <span
-              className={`absolute bottom-4 left-4 whitespace-nowrap rounded-md bg-black/55 px-2 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-white shadow-sm backdrop-blur-sm transition-opacity duration-300 sm:bottom-5 sm:left-5 sm:text-sm sm:[writing-mode:vertical-rl] sm:rotate-180 ${
+              className={`absolute bottom-4 left-4 whitespace-nowrap rounded-md bg-black/55 px-2 py-1.5 text-xs font-semibold uppercase tracking-[0.28em] text-white shadow-sm backdrop-blur-sm transition-opacity duration-300 md:bottom-5 md:left-5 md:text-sm md:[writing-mode:vertical-rl] md:rotate-180 ${
                 isActive ? 'opacity-0' : 'opacity-100'
               }`}
             >
