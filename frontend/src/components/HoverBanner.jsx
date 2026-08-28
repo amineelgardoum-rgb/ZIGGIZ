@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { scrollToId } from '../hooks/useLenis';
 
 export default function HoverBanner({ items, label = 'Items', className = '' }) {
   const [active, setActive] = useState(null);
@@ -83,28 +83,15 @@ export default function HoverBanner({ items, label = 'Items', className = '' }) 
                       </p>
                     )}
                   </div>
-                  {panel.links && (
-                    <ul className="flex flex-col gap-2">
-                      {panel.links.map((item) => (
-                        <li key={item.name}>
-                          <a
-                            href={`#${item.href}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              scrollToId(item.href);
-                            }}
-                            className="group/item flex items-center justify-between gap-4 rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 backdrop-blur-md transition-colors duration-300 hover:border-sun hover:bg-sun hover:text-ocean-deep focus-visible:bg-sun focus-visible:text-ocean-deep"
-                          >
-                            <span className="flex items-baseline gap-3">
-                              <span className="text-sm font-medium sm:text-base">{item.name}</span>
-                              <span className="hidden text-xs opacity-70 sm:inline">{item.note}</span>
-                            </span>
-                            <ArrowRight className="size-4 shrink-0 opacity-70 transition-transform duration-300 group-hover/item:translate-x-1" />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                  {panel.cta && (
+                    <Link
+                      to="/reservation"
+                      onClick={(e) => e.stopPropagation()}
+                      className="group/item flex w-fit items-center gap-3 rounded-xl border border-white/15 bg-white/10 px-5 py-2.5 backdrop-blur-md transition-colors duration-300 hover:border-sun hover:bg-sun hover:text-ocean-deep focus-visible:bg-sun focus-visible:text-ocean-deep"
+                    >
+                      <span className="text-sm font-medium sm:text-base">{panel.cta}</span>
+                      <ArrowRight className="size-4 shrink-0 opacity-70 transition-transform duration-300 group-hover/item:translate-x-1 rtl:-scale-x-100 rtl:group-hover/item:-translate-x-1" />
+                    </Link>
                   )}
                 </motion.div>
               )}

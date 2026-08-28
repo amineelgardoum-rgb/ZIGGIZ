@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
-import { PillButton } from './UI';
 import { lockScroll, unlockScroll, scrollToId } from '../hooks/useLenis';
 import { useI18n } from '../i18n/I18nContext';
 
 const LINK_HREFS = ['lessons', 'lessons', 'testimonials', 'contact'];
 const SOCIAL_HREFS = ['instagram', 'x', 'youtube', 'tiktok'];
 
-export default function MenuOverlay({ open, onClose, onOpenContact }) {
+export default function MenuOverlay({ open, onClose }) {
   const { t } = useI18n();
 
   useEffect(() => {
@@ -90,15 +90,14 @@ export default function MenuOverlay({ open, onClose, onOpenContact }) {
             </nav>
 
             <div className="flex flex-col gap-6 border-t border-white/15 px-4 pb-6 pt-8 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-              <PillButton
-                variant="light"
-                onClick={() => {
-                  onClose();
-                  setTimeout(onOpenContact, 250);
-                }}
+              <Link
+                to="/reservation"
+                onClick={onClose}
+                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-ocean-light hover:text-white"
               >
                 {t.menu.bookTrip}
-              </PillButton>
+                <span aria-hidden="true" className="rtl:-scale-x-100">&rarr;</span>
+              </Link>
               <nav className="flex gap-5 text-sm text-white/70">
                 {t.menu.social.map((s, i) => (
                   <a key={s} href={`#${SOCIAL_HREFS[i]}`} className="hover:text-white">

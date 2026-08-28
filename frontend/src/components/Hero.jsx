@@ -1,13 +1,13 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Header from './Header';
 import SurfScene from './SurfScene';
 import { StackedLines } from './RevealText';
-import { PillButton } from './UI';
 import { scrollToId } from '../hooks/useLenis';
 import { useI18n } from '../i18n/I18nContext';
 
-export default function Hero({ onOpenMenu, onOpenContact }) {
+export default function Hero({ onOpenMenu }) {
   const { t } = useI18n();
   const wrapperRef = useRef(null);
 
@@ -34,13 +34,21 @@ export default function Hero({ onOpenMenu, onOpenContact }) {
       >
         <SurfScene progress={scrollYProgress} />
 
-        <Header onOpenMenu={onOpenMenu} onOpenContact={onOpenContact} />
+        <Header onOpenMenu={onOpenMenu} />
 
         <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center gap-5 px-4 sm:gap-7 sm:px-6">
           <div className="pointer-events-auto flex w-full max-w-sm flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
-            <PillButton variant="light" onClick={onOpenContact} className="justify-center">
+            <Link
+              to="/reservation"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-ocean-light hover:text-white"
+            >
               {t.hero.bookSession}
-            </PillButton>
+              <motion.span className="grid" whileHover="hover" initial="rest" animate="rest">
+                <motion.span variants={{ rest: { x: 0 }, hover: { x: 5 } }} transition={{ type: 'spring', stiffness: 320, damping: 20 }}>
+                  <span className="inline-block rtl:-scale-x-100">&rarr;</span>
+                </motion.span>
+              </motion.span>
+            </Link>
             <button
               onClick={() => scrollToId('lessons')}
               className="rounded-full border border-white/30 bg-white/5 px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-white backdrop-blur transition-colors hover:bg-white/15"

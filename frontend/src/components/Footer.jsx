@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import Logo from './Logo';
-import { Eyebrow, PillButton } from './UI';
+import { Eyebrow } from './UI';
 import { StackedLines } from './RevealText';
 import { getLenis, goTo } from '../hooks/useLenis';
 import { useI18n } from '../i18n/I18nContext';
@@ -36,7 +37,7 @@ const COLUMNS = [
 const SOCIAL_HREFS = ['instagram', 'x', 'youtube', 'tiktok'];
 const LEGAL_HREFS = ['privacy', 'terms'];
 
-export default function Footer({ onOpenContact }) {
+export default function Footer() {
   const { t } = useI18n();
 
   const toTop = () => {
@@ -61,9 +62,13 @@ export default function Footer({ onOpenContact }) {
           viewport={{ once: true }}
           transition={{ type: 'spring', stiffness: 200, damping: 24, delay: 0.15 }}
         >
-          <PillButton variant="light" onClick={onOpenContact}>
+          <Link
+            to="/reservation"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-ocean-light hover:text-white"
+          >
             {t.footer.bookTrip}
-          </PillButton>
+            <span aria-hidden="true" className="rtl:-scale-x-100">&rarr;</span>
+          </Link>
         </motion.div>
       </div>
 

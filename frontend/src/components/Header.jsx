@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { goTo } from '../hooks/useLenis';
 import { useI18n } from '../i18n/I18nContext';
 
-export default function Header({ onOpenMenu, onOpenContact }) {
+export default function Header({ onOpenMenu }) {
   const { t } = useI18n();
   return (
     <header className="relative z-20 flex items-center px-6 pt-6 sm:px-10 sm:pt-8">
@@ -18,12 +19,12 @@ export default function Header({ onOpenMenu, onOpenContact }) {
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-3 sm:gap-4">
-        <button
-          onClick={onOpenContact}
+        <Link
+          to="/reservation"
           className="hidden text-xs uppercase tracking-wide text-white/90 underline-offset-4 hover:underline sm:inline-block"
         >
           {t.header.bookTrip}
-        </button>
+        </Link>
         <LanguageSwitcher />
         <button
           aria-label={t.header.openMenu}

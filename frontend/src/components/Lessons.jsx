@@ -2,48 +2,19 @@ import HoverBanner from './HoverBanner';
 import { useI18n } from '../i18n/I18nContext';
 
 const PANELS = [
-  {
-    id: 'surf',
-    image: '/images/surf/surf3.jpeg',
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
-  {
-    id: 'quads',
-    image: '/images/activities/activitie3.jpg',
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
-  {
-    id: 'boats',
-    image: '/images/activities/activitie4.jpg',
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
-  {
-    id: 'hostel',
-    image: '/images/hostels/hostle1.jpg',
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
+  { id: 'surf', image: '/images/surf/surf3.jpeg' },
+  { id: 'quads', image: '/images/activities/activitie3.jpg' },
+  { id: 'boats', image: '/images/activities/activitie4.jpg' },
+  { id: 'hostel', image: '/images/hostels/hostle1.jpg' },
 ];
 
 export default function Lessons() {
   const { t } = useI18n();
   const panels = PANELS.map((panel, i) => ({
     ...panel,
-    ...t.lessons.panels[i],
-    links: panel.links.map((link, j) => ({ ...link, ...t.lessons.panels[i].links[j] })),
+    label: t.lessons.panels[i].label,
+    description: t.lessons.panels[i].description,
+    cta: t.lessons.cta,
   }));
 
   return (
