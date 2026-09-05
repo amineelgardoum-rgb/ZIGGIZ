@@ -8,8 +8,11 @@ import { Eyebrow } from '../components/UI';
 import { StackedLines } from '../components/RevealText';
 import { useI18n } from '../i18n/I18nContext';
 import { getLenis } from '../hooks/useLenis';
-import { submitReservation } from '../lib/api';
+import { submitReservation, fetchServices } from '../lib/api';
 import { validateReservation, MAX_PEOPLE } from '../lib/validate';
+
+const ACTIVITY_SERVICES = ['Surf Lessons', 'Quad Trips', 'Boat Trips'];
+const TIME_SLOTS = ['08:00', '10:00', '14:00', '16:00'];
 
 function clampIndex(value, max) {
   const n = Number.parseInt(value, 10);
@@ -26,17 +29,20 @@ function todayISO() {
 export default function Reservation() {
   const { t } = useI18n();
   const [params] = useSearchParams();
-  const services = t.lessons.panels;
+  const fallbackServices = t.lessons.panels;
+  const [services, setServices] = useState(fallbackServices);
 
   const [service, setService] = useState(() => clampIndex(params.get('service'), services.length - 1));
   const [option, setOption] = useState(() => {
     const s = clampIndex(params.get('service'), services.length - 1);
     return clampIndex(params.get('option'), (services[s]?.links?.length || 1) - 1);
   });
-  const [status, setStatus] = useState('idle'); // idle | sending | done
+  const [status, setStatus] = useState('idle');
   const [fieldErrors, setFieldErrors] = useState({});
-  const [submitError, setSubmitError] = useState(null); // 'network' | 'timeout' | 'http'
+  const [submitError, setSubmitError] = useState(null);
+  const [serverMessage, setServerMessage] = useState(null);
   const [firstName, setFirstName] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
 
   useEffect(() => {
     const lenis = getLenis();
@@ -44,10 +50,27 @@ export default function Reservation() {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    fetchServices()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setServices(data.map((svc) => ({
+            label: svc.name,
+            links: (svc.options || []).map((o) => ({ name: o.name, note: o.note })),
+          })));
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const pickService = (i) => {
     setService(i);
     setOption(0);
+    setSelectedTime('');
   };
+
+  const currentServiceName = services[service]?.label || '';
+  const isActivity = ACTIVITY_SERVICES.includes(currentServiceName);
 
   const clearFieldError = (fieldName) => {
     setFieldErrors((prev) => {
@@ -60,25 +83,46 @@ export default function Reservation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = Object.fromEntries(new FormData(e.target).entries());
+    const raw = Object.fromEntries(new FormData(e.target).entries());
 
-    // Validate first — invalid forms are never sent to the backend.
-    const errors = validateReservation(payload);
+    if (isActivity && !raw.time) {
+      setFieldErrors({ time: 'required' });
+      setSubmitError(null);
+      return;
+    }
+
+    const errors = validateReservation(raw);
     setFieldErrors(errors);
     if (Object.keys(errors).length > 0) {
       setSubmitError(null);
       return;
     }
 
-    setFirstName((payload.name || '').toString().split(' ')[0]);
+    const serviceIndex = Number(raw.service);
+    const optionIndex = Number(raw.option);
+
+    const payload = {
+      service: services[serviceIndex]?.label || raw.service,
+      option: services[serviceIndex]?.links?.[optionIndex]?.name || raw.option,
+      date: raw.date,
+      time: isActivity ? raw.time : null,
+      people: raw.people,
+      name: raw.name,
+      email: raw.email,
+      message: raw.message || '',
+    };
+
+    setFirstName((raw.name || '').toString().split(' ')[0]);
     setStatus('sending');
     setSubmitError(null);
+    setServerMessage(null);
     try {
       await submitReservation(payload);
       setStatus('done');
     } catch (err) {
       setStatus('idle');
       setSubmitError(err?.code || 'http');
+      setServerMessage(err?.message || null);
     }
   };
 
@@ -133,7 +177,7 @@ export default function Reservation() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: 'spring', stiffness: 200, damping: 26, delay: 0.15 }}
-              className="mt-8 flex flex-col gap-4 rounded-3xl border border-white/15 bg-black/30 p-6 backdrop-blur-md sm:p-8"
+              className="flex flex-col gap-4 rounded-3xl border border-white/15 bg-black/30 p-6 backdrop-blur-md sm:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <Select
@@ -173,6 +217,17 @@ export default function Reservation() {
                 />
               </div>
 
+              {isActivity && (
+                <Select
+                  label={r.timeLabel}
+                  name="time"
+                  value={selectedTime}
+                  onChange={(e) => { setSelectedTime(e.target.value); clearFieldError('time'); }}
+                  options={[{ value: '', label: r.timePlaceholder || 'Select a time' }, ...TIME_SLOTS.map((t) => ({ value: t, label: t }))]}
+                  error={fieldErrors.time && r.errors[fieldErrors.time]}
+                />
+              )}
+
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field
                   label={r.nameLabel}
@@ -208,9 +263,18 @@ export default function Reservation() {
               </button>
 
               {submitError && (
-                <p role="alert" className="text-center text-sm text-coral">
-                  {r.errors[submitError] || r.errors.http}
-                </p>
+                <div role="alert" className="flex flex-col items-center gap-3">
+                  <p className="text-center text-sm text-coral">
+                    {serverMessage || r.errors[submitError] || r.errors.http}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setSubmitError(null); setServerMessage(null); }}
+                    className="rounded-full border border-white/20 bg-white/10 px-5 py-2 text-xs font-medium uppercase tracking-wide text-white backdrop-blur transition-colors hover:bg-white/20"
+                  >
+                    {r.retry || 'Try again'}
+                  </button>
+                </div>
               )}
             </motion.form>
           ) : (
@@ -218,7 +282,7 @@ export default function Reservation() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: 'spring', stiffness: 200, damping: 26 }}
-              className="mt-8 rounded-3xl border border-white/15 bg-black/30 p-8 text-center backdrop-blur-md"
+              className="rounded-3xl border border-white/15 bg-black/30 p-8 text-center backdrop-blur-md"
             >
               <div className="mx-auto grid size-12 place-items-center rounded-full bg-sun text-ocean-deep">
                 <Check className="h-5 w-5" />
@@ -271,17 +335,22 @@ function Field({ label, name, type = 'text', placeholder, as = 'input', rows, mi
   );
 }
 
-function Select({ label, name, value, onChange, options }) {
+function Select({ label, name, value, onChange, options, error }) {
   return (
     <label className="block">
       <span className="text-xs font-medium uppercase tracking-[0.18em] text-white/70">{label}</span>
-      <select name={name} value={value} onChange={onChange} className={inputClasses}>
+      <select name={name} value={value} onChange={onChange} className={`${inputClasses} ${error ? 'border-coral' : ''}`}>
         {options.map((o) => (
           <option key={o.value} value={o.value}>
             {o.label}
           </option>
         ))}
       </select>
+      {error && (
+        <span role="alert" className="mt-1.5 block text-xs text-coral">
+          {error}
+        </span>
+      )}
     </label>
   );
 }

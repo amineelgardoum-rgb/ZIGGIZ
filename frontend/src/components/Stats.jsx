@@ -51,7 +51,7 @@ export default function Stats() {
         </div>
       </div>
 
-      <dl className="mt-5 grid w-full grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
+      <dl className="grid w-full grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
         {t.stats.items.map((s, i) => (
           <motion.div
             key={s.label}

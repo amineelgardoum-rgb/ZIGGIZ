@@ -4,7 +4,7 @@
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const MAX_PEOPLE = 20;
+export const MAX_PEOPLE = 10;
 
 export function validateReservation(values) {
   const errors = {};

@@ -1,10 +1,32 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eyebrow } from './UI';
 import { StackedLines } from './RevealText';
 import { useI18n } from '../i18n/I18nContext';
+import { fetchReviews } from '../lib/api';
 
 export default function Testimonials() {
   const { t } = useI18n();
+  const [reviews, setReviews] = useState(null);
+
+  useEffect(() => {
+    fetchReviews()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setReviews(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const quotes = reviews
+    ? reviews.map((r) => ({
+        quote: r.quote,
+        name: r.authorName,
+        role: r.authorRole || '',
+      }))
+    : t.testimonials.quotes;
+
   return (
     <section
       id="testimonials"
@@ -26,8 +48,8 @@ export default function Testimonials() {
         />
       </div>
 
-      <ul className="mx-auto mt-16 grid w-full max-w-7xl gap-8 text-center sm:gap-10 md:grid-cols-3 cursor-pointer ">
-        {t.testimonials.quotes.map((q, i) => (
+      <ul className="mx-auto grid w-full max-w-7xl gap-8 text-center sm:gap-10 md:grid-cols-3 cursor-pointer ">
+        {quotes.map((q, i) => (
           <motion.li
             key={q.name}
             className="group flex h-full flex-col items-center justify-between rounded-xl border border-white/15 bg-black/30 p-6 text-center backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-sun/60 hover:-translate-y-2"

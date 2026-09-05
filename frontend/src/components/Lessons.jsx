@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import HoverBanner from './HoverBanner';
 import { useI18n } from '../i18n/I18nContext';
+import { fetchServices } from '../lib/api';
 
-const PANELS = [
+const FALLBACK_PANELS = [
   { id: 'surf', image: '/images/surf/surf3.jpeg' },
   { id: 'quads', image: '/images/activities/activitie3.jpg' },
   { id: 'boats', image: '/images/activities/activitie4.jpg' },
@@ -10,12 +12,34 @@ const PANELS = [
 
 export default function Lessons() {
   const { t } = useI18n();
-  const panels = PANELS.map((panel, i) => ({
-    ...panel,
-    label: t.lessons.panels[i].label,
-    description: t.lessons.panels[i].description,
-    cta: t.lessons.cta,
-  }));
+  const [backendServices, setBackendServices] = useState(null);
+
+  useEffect(() => {
+    fetchServices()
+      .then((data) => {
+        if (data && data.length > 0) {
+          setBackendServices(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const panels = backendServices
+    ? backendServices.map((svc, i) => ({
+        id: svc.name.toLowerCase().replace(/\s+/g, '-'),
+        image: svc.image || FALLBACK_PANELS[i]?.image || '',
+        label: svc.name,
+        description: svc.description,
+        links: (svc.options || []).map((o) => ({ name: o.name, note: o.note })),
+        cta: t.lessons.cta,
+      }))
+    : FALLBACK_PANELS.map((panel, i) => ({
+        ...panel,
+        label: t.lessons.panels[i].label,
+        description: t.lessons.panels[i].description,
+        links: t.lessons.panels[i].links,
+        cta: t.lessons.cta,
+      }));
 
   return (
     <section
