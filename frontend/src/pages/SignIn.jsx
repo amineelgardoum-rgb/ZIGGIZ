@@ -49,8 +49,8 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-svh bg-sand p-2 sm:p-3">
-      <div className="relative isolate min-h-[calc(100svh-1rem)] overflow-hidden rounded-[2rem] bg-ocean-deep text-white">
+    <div className="min-h-svh bg-sand">
+      <div className="relative isolate min-h-svh overflow-hidden rounded-[2rem] bg-ocean-deep text-white">
         <div className="absolute inset-0 -z-10">
           <img
             src="/images/background/taghazout.jpg"

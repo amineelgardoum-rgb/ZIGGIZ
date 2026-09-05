@@ -66,3 +66,23 @@ export async function fetchReviews() {
   if (!API_BASE) return null;
   return request(`${API_BASE}/api/reviews`);
 }
+
+export async function submitReview(data) {
+  if (!API_BASE) {
+    await new Promise((resolve) => setTimeout(resolve, 900));
+    return { ok: true, simulated: true };
+  }
+
+  const payload = {
+    name: data.name,
+    email: data.email,
+    quote: data.quote,
+    role: data.role || '',
+  };
+
+  return request(`${API_BASE}/api/reviews`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+}

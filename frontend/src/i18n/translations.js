@@ -117,6 +117,16 @@ const en = {
     eyebrow: 'What travelers say',
     titleLines: ['Loved by', 'the whole lineup'],
     starsAria: '5 out of 5 stars',
+    writeReview: 'Write a review',
+    reviewSubmitted: 'Thanks! Your review will appear after approval.',
+    formName: 'Name',
+    formEmail: 'Email',
+    formRole: 'Role (optional)',
+    formQuote: 'Your review',
+    formQuotePlaceholder: 'Share your experience...',
+    formSending: 'Sending...',
+    formSubmit: 'Submit review',
+    formCancel: 'Cancel',
     quotes: [
       {
         quote:
@@ -143,13 +153,8 @@ const en = {
     blurb:
       'A boutique surf outfit running guided trips, lessons, and coastal stays where the swell forecast actually holds up.',
     addressLine: '14 Shoreline Ave, Wave Bay',
-    columns: [
-      { heading: 'Lessons', links: ['Grom Camp', 'Advanced Squad', 'Adult Lessons', 'Private Guiding'] },
-      { heading: 'Trips', links: ['Boat Charters', 'Breaks', 'Events', 'Gear Shop'] },
-      { heading: 'Company', links: ['About', 'Guides', 'Careers', 'Contact'] },
-    ],
+    columns: [],
     social: ['Instagram', 'X', 'YouTube', 'TikTok'],
-    legal: ['Privacy', 'Terms'],
     copyright: '© 2026 Ziggiz Surf Co. All rights reserved.',
     backToTop: 'Back to top',
   },
@@ -330,6 +335,16 @@ const fr = {
     eyebrow: 'Ce que disent les voyageurs',
     titleLines: ['Adoré par', 'toute la ligne'],
     starsAria: '5 étoiles sur 5',
+    writeReview: 'Écrire un avis',
+    reviewSubmitted: 'Merci ! Votre avis apparaîtra après approbation.',
+    formName: 'Nom',
+    formEmail: 'E-mail',
+    formRole: 'Rôle (optionnel)',
+    formQuote: 'Votre avis',
+    formQuotePlaceholder: 'Partagez votre expérience...',
+    formSending: 'Envoi...',
+    formSubmit: 'Envoyer l\'avis',
+    formCancel: 'Annuler',
     quotes: [
       {
         quote:
@@ -356,13 +371,8 @@ const fr = {
     blurb:
       'Une petite structure de surf organisant des voyages guidés, des cours et des séjours côtiers où les prévisions de houle tiennent vraiment leurs promesses.',
     addressLine: '14 Shoreline Ave, Wave Bay',
-    columns: [
-      { heading: 'Cours', links: ['Grom Camp', 'Squad avancé', 'Cours adultes', 'Guidage privé'] },
-      { heading: 'Voyages', links: ['Sorties bateau', 'Spots', 'Événements', 'Boutique'] },
-      { heading: 'Entreprise', links: ['À propos', 'Guides', 'Carrières', 'Contact'] },
-    ],
+    columns: [],
     social: ['Instagram', 'X', 'YouTube', 'TikTok'],
-    legal: ['Confidentialité', 'Conditions'],
     copyright: '© 2026 Ziggiz Surf Co. Tous droits réservés.',
     backToTop: 'Retour en haut',
   },
@@ -543,6 +553,16 @@ const ar = {
     eyebrow: 'ماذا يقول المسافرون',
     titleLines: ['أحبّه', 'كلُّ من في الماء'],
     starsAria: '5 من 5 نجوم',
+    writeReview: 'اكتب تقييمك',
+    reviewSubmitted: 'شكراً! سيظهر تقييمك بعد المراجعة.',
+    formName: 'الاسم',
+    formEmail: 'البريد الإلكتروني',
+    formRole: 'الدور (اختياري)',
+    formQuote: 'تقييمك',
+    formQuotePlaceholder: 'شارك تجربتك...',
+    formSending: 'جارٍ الإرسال...',
+    formSubmit: 'إرسال التقييم',
+    formCancel: 'إلغاء',
     quotes: [
       {
         quote:
@@ -569,13 +589,8 @@ const ar = {
     blurb:
       'مجموعة سيرف صغيرة تنظّم رحلات مرشدة ودروساً وإقامات ساحلية حيث تتحقق توقعات الموج فعلاً.',
     addressLine: '14 شارع الشاطئ، خليج الموج',
-    columns: [
-      { heading: 'الدروس', links: ['مخيم الأطفال', 'الفريق المتقدم', 'دروس الكبار', 'إرشاد خاص'] },
-      { heading: 'الرحلات', links: ['كراء القوارب', 'النقاط', 'الفعاليات', 'متجر المعدات'] },
-      { heading: 'الشركة', links: ['من نحن', 'المرشدون', 'الوظائف', 'اتصل بنا'] },
-    ],
+    columns: [],
     social: ['إنستغرام', 'إكس', 'يوتيوب', 'تيك توك'],
-    legal: ['الخصوصية', 'الشروط'],
     copyright: '© 2026 زيغيز سيرف. جميع الحقوق محفوظة.',
     backToTop: 'العودة إلى الأعلى',
   },

@@ -1,223 +1,535 @@
-# 🏄 ZIGGIZ
+# ZIGGIZ Surf Co.
 
 <p align="center">
-  <img src="public/images/surf/surf1.jpeg" alt="Saltline Surf Co — surfer riding a wave at golden hour" width="820">
+  <img src="frontend/public/images/surf/surf1.jpeg" alt="Ziggiz Surf Co — surfer riding a wave at golden hour" width="820">
 </p>
 
-A production-ready **React + Vite + Tailwind CSS v4** marketing site for a boutique
-surf-tourism outfit on the Atlantic coast — guided surf trips, lessons, quad &
-boat adventures, and coastal hostel stays.
-
-The site pairs an editorial, dark-ocean visual language (deep navy, sand black,
-sun yellow) with motion-driven storytelling: a pinned hero whose photos
-cross-fade as you scroll, a typewriter headline, ghost-word carousels, animated
-counters, and buttery Lenis smooth scrolling.
+A full-stack **surf-tourism platform** with a React frontend and Spring Boot backend — booking management, review system, and admin dashboard with JWT authentication.
 
 ---
 
-## ✨ Highlights
+## Tech Stack
 
-|                                   |                                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------- |
-| 🌊**Scroll-linked hero**    | Pinned hero scene where photography cross-fades continuously with scroll progress           |
-| ⌨️**Typewriter headline** | Rotating, color-coded words —*Surf* (white), *Beach* (blue), *Hostels* (clay brown)  |
-| 📣**Announcement marquee**  | Thin auto-scrolling promo bar pinned at the very top of the page                            |
-| 🎠**Ghost-word carousel**   | Oversized display type that swaps per slide, parallaxed by scroll                           |
-| 🖼️**Lessons accordion**   | Hover-to-expand image panels for lessons, quad trips, boat trips & hostel                   |
-| 🔢**Animated KPIs**         | Count-up numbers inside black glassmorphism cards over a photo backdrop                     |
-| 💬**Review cards**          | Black-glass testimonial cards with staggered slide-up reveals                               |
-| 🧭**Fullscreen menu**       | Staggered nav overlay with scroll locking and Esc/backdrop close                            |
-| 📬**Booking modal**         | Accessible "Book a trip" dialog (stub submit — wire it to your backend)                    |
-| 🖱️**Lenis smooth scroll** | Inertial, eased scrolling across the whole page                                             |
-| ♿**Accessibility**         | Keyboard-navigable tabs/menu/modals, focus-visible rings,`prefers-reduced-motion` support |
-
----
-
-## 🖼️ The experience, section by section
-
-### Hero — first paddle
-
-The full-viewport hero pins while you scroll: photography cross-fades through
-surf, activities and hostel shots, a typewriter types and deletes
-**SURF → BEACH → HOSTELS**, and a floating trip slider + stat card sit on a
-glass backdrop.
-
-<p>
-  <img src="public/images/surf/surf2.jpeg" alt="Surfer carving a wave" width="49%">
-  <img src="public/images/activities/activitie1.jpeg" alt="Coastal activity — ocean session" width="49%">
-</p>
-
-### Guides carousel
-
-A scroll-parallaxed showcase of what the outfit offers, framed by oversized
-ghost typography and a marquee of famous breaks.
-
-<p>
-  <img src="public/images/surf/surf10.jpg" alt="Surf guide session" width="32%">
-  <img src="public/images/activities/activitie2.jpeg" alt="Sunrise yoga by the ocean" width="32%">
-  <img src="public/images/activities/activitie3.jpg" alt="Quad adventure in the dunes" width="32%">
-</p>
-
-### Lessons & trips
-
-Hover any panel to expand it — surf lessons for all ages, quad rides through
-desert tracks, sunset boat cruises, and beds steps from the break.
-
-<p>
-  <img src="public/images/surf/surf3.jpeg" alt="Surf lesson in the whitewash" width="32%">
-  <img src="public/images/activities/activitie4.jpg" alt="Boat trip along the coast" width="32%">
-  <img src="public/images/hostels/hostle1.jpg" alt="Surf hostel stay" width="32%">
-</p>
-
-### By the numbers
-
-KPI cards with count-up animation, black glassmorphism, and a sun-yellow hover
-border — layered over an aerial shot of the coastline.
-
-<p align="center">
-  <img src="public/images/background/agadir.jpg" alt="Aerial view of Agadir beach and its bay" width="70%">
-</p>
-
-### What travelers say
-
-Real words from guests, on frosted black cards over a Taghazout backdrop.
-
-<p align="center">
-  <img src="public/images/background/taghazout.jpg" alt="Taghazout coastline and surf breaks" width="70%">
-</p>
-
-### More from the coast
-
-<p>
-  <img src="public/images/surf/surf5.jpeg" alt="Dawn patrol paddle out" width="32%">
-  <img src="public/images/surf/surf6.jpeg" alt="Green wave riding" width="32%">
-  <img src="public/images/hostels/hostle2.jpg" alt="Hostel common area" width="32%">
-</p>
+| Layer               | Tool                        | Purpose                                       |
+| ------------------- | --------------------------- | --------------------------------------------- |
+| **Frontend**  | React 19 + Vite 8           | Component architecture, instant HMR           |
+| **Styling**   | Tailwind CSS v4             | Utility classes + design tokens via`@theme` |
+| **Motion**    | Framer Motion 13            | Scroll-linked transforms, reveals, loader     |
+| **Scrolling** | Lenis                       | Inertial smooth scrolling                     |
+| **Routing**   | React Router 7              | Client-side page routing                      |
+| **Backend**   | Spring Boot 4.1.1 + Java 17 | REST API, JPA, JWT auth                       |
+| **Database**  | H2 (in-memory)              | Fast dev database, auto-seeded on boot        |
+| **ORM**       | Spring Data JPA + Hibernate | Entity management, lazy loading               |
+| **Auth**      | JWT (jjwt 0.12.6)           | Token-based admin authentication              |
+| **Icons**     | lucide-react                | Tree-shakeable icon set                       |
 
 ---
 
-## 🧰 Stack
+## Architecture Overview
 
-| Layer     | Tool                       | Why                                                  |
-| --------- | -------------------------- | ---------------------------------------------------- |
-| UI        | **React 19**         | Component architecture, hooks-driven state           |
-| Build     | **Vite 8**           | Instant HMR, static production builds                |
-| Styling   | **Tailwind CSS v4**  | Utility classes + design tokens via`@theme` in CSS |
-| Motion    | **Framer Motion 13** | Scroll-linked transforms, reveals, modals, loader    |
-| Scrolling | **Lenis**            | Inertial smooth scrolling + programmatic`scrollTo` |
-| Icons     | **lucide-react**     | Crisp, tree-shakeable icon set                       |
-| Lint      | **oxlint**           | Fast zero-config linting                             |
+```mermaid
+graph TB
+    subgraph Frontend["Frontend (React + Vite)"]
+        Home["Home Page"]
+        Reservation["Reservation Page"]
+        SignIn["Sign In Page"]
+        AdminDash["Admin Dashboard"]
+    end
 
-## 🎨 Design system
+    subgraph Backend["Backend (Spring Boot)"]
+        AuthAPI["AuthController"]
+        BookingAPI["BookingController"]
+        ReviewAPI["ReviewController"]
+        ServiceAPI["ServiceController"]
+    end
 
-Tokens are declared once in [`src/index.css`](src/index.css) inside Tailwind's
-`@theme` block and consumed as utilities everywhere (`bg-ocean-deep`,
-`text-sun`, `rounded-[2rem]`, …).
+    subgraph Database["H2 Database"]
+        Users[(Users)]
+        Bookings[(Bookings)]
+        Reviews[(Reviews)]
+        Services[(Services)]
+    end
 
-| Token                       | Value                     | Use                             |
-| --------------------------- | ------------------------- | ------------------------------- |
-| `sand`                    | `#060B12`               | Page background (blue-black)    |
-| `ocean-deep`              | `#071B2E`               | Section surfaces, modal, footer |
-| `ocean` / `ocean-light` | `#0F3D63` / `#2E86C1` | Brand blues, accents            |
-| `sun` / `coral`         | `#FFD23F` / `#F2B705` | CTAs, hover borders, highlights |
-| `clay`                    | `#B5793F`               | "Hostels" headline accent       |
-| `ink` / `ink-soft`      | `#F5F5F0` / `#A8B0B8` | Primary / secondary text        |
+    Home -->|"fetch services/reviews"| ServiceAPI
+    Home -->|"submit review"| ReviewAPI
+    Reservation -->|"create booking"| BookingAPI
+    Reservation -->|"fetch services"| ServiceAPI
+    SignIn -->|"login"| AuthAPI
+    AdminDash -->|"manage bookings"| BookingAPI
+    AdminDash -->|"manage reviews"| ReviewAPI
 
-**Typography** — [Fraunces](https://fonts.google.com/specimen/Fraunces) for
-display headings, [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans)
-for body copy.
+    BookingAPI --> Bookings
+    BookingAPI --> Users
+    ReviewAPI --> Reviews
+    ReviewAPI --> Users
+    ServiceAPI --> Services
+    AuthAPI --> Users
+```
 
 ---
 
-## 🚀 Getting started
+## Class Diagram
+
+```mermaid
+classDiagram
+    class User {
+        +Long id
+        +String fullName
+        +String email
+        +String password
+        +Role role
+        +List~Booking~ bookings
+        +List~Review~ reviews
+    }
+
+    class Role {
+        <<enum>>
+        ADMIN
+        CLIENT
+    }
+
+    class Booking {
+        +Long id
+        +SurfService service
+        +ServiceOption option
+        +LocalDate date
+        +LocalTime sessionTime
+        +Integer people
+        +User user
+        +String customerName
+        +String customerEmail
+        +String message
+        +BookingStatus status
+        +LocalDateTime createdAt
+    }
+
+    class BookingStatus {
+        <<enum>>
+        PENDING
+        CONFIRMED
+        CANCELLED
+    }
+
+    class SurfService {
+        +Long id
+        +String name
+        +String description
+        +String image
+        +List~ServiceOption~ options
+    }
+
+    class ServiceOption {
+        +Long id
+        +String name
+        +String note
+        +SurfService service
+    }
+
+    class Review {
+        +Long id
+        +String quote
+        +User user
+        +String authorRole
+        +Integer rating
+        +Boolean displayed
+    }
+
+    User "1" --> "*" Booking : makes
+    User "1" --> "*" Review : writes
+    SurfService "1" --> "*" ServiceOption : contains
+    SurfService "1" --> "*" Booking : referenced by
+    ServiceOption "1" --> "*" Booking : referenced by
+    User --> Role
+    Booking --> BookingStatus
+```
+
+---
+
+## Sequence Diagram — Booking Flow
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant FE as Frontend
+    participant BE as Backend
+    participant DB as H2 Database
+
+    User->>FE: Fill reservation form
+    FE->>FE: Client-side validation
+    FE->>BE: POST /api/bookings
+    BE->>BE: Validate request (Bean Validation)
+    BE->>DB: Find or create User by email
+    BE->>DB: Check time-slot overlap
+    alt Slot available
+        BE->>DB: Save Booking (status=PENDING)
+        BE-->>FE: 201 Created { booking }
+        FE-->>User: Show confirmation screen
+    else Slot conflict
+        BE-->>FE: 409 { error: "Time slot already booked" }
+        FE-->>User: Show error with retry button
+    end
+```
+
+---
+
+## Sequence Diagram — Review Flow
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant FE as Frontend
+    participant BE as Backend
+    participant DB as H2 Database
+
+    Note over User,DB: User submits review
+    User->>FE: Fill review form
+    FE->>BE: POST /api/reviews
+    BE->>DB: Find or create User by email
+    BE->>DB: Save Review (displayed=false)
+    BE-->>FE: 201 Created { review }
+
+    Note over User,DB: Admin approves review
+    actor Admin
+    Admin->>FE: Open Admin Dashboard
+    FE->>BE: GET /api/reviews/all (Bearer token)
+    BE->>DB: Find all reviews
+    DB-->>BE: Reviews list
+    BE-->>FE: Reviews (pending + approved)
+    FE-->>Admin: Show reviews tab
+    Admin->>FE: Click approve on pending review
+    FE->>BE: PATCH /api/reviews/{id}/approve (Bearer token)
+    BE->>DB: Update displayed=true
+    BE-->>FE: 200 OK { review }
+    FE-->>Admin: Review moves to approved section
+
+    Note over User,DB: Review appears on homepage
+    User->>FE: Refresh homepage
+    FE->>BE: GET /api/reviews
+    BE->>DB: Find reviews where displayed=true
+    DB-->>BE: Approved reviews
+    BE-->>FE: Reviews list
+    FE-->>User: Show in testimonial carousel
+```
+
+---
+
+## Sequence Diagram — Authentication Flow
+
+```mermaid
+sequenceDiagram
+    actor Admin
+    participant FE as Frontend
+    participant BE as Backend
+    participant DB as H2 Database
+
+    Admin->>FE: Enter email + password
+    FE->>BE: POST /api/auth/login
+    BE->>DB: Find user by email
+    DB-->>BE: User record
+    BE->>BE: Compare passwords (plain)
+    alt Credentials valid
+        BE->>BE: Generate JWT token
+        BE-->>FE: 200 { token, user }
+        FE->>FE: Store token + user in localStorage
+        FE-->>Admin: Redirect to /admin
+    else Invalid credentials
+        BE-->>FE: 401 { error: "Invalid credentials" }
+        FE-->>Admin: Show error message
+    end
+
+    Note over Admin,DB: Subsequent admin requests
+    Admin->>FE: Perform admin action
+    FE->>BE: Request with Authorization: Bearer token
+    BE->>BE: Extract & validate JWT
+    alt Token valid + role=ADMIN
+        BE->>BE: Process request
+        BE-->>FE: 200 OK
+    else Invalid/expired token
+        BE-->>FE: 401 Unauthorized
+        FE-->>Admin: Redirect to /signin
+    end
+```
+
+---
+
+## Activity Diagram — Reservation Process
+
+```mermaid
+flowchart TD
+    Start([User visits /reservation]) --> FetchServices[Fetch services from API]
+    FetchServices --> ShowForm[Show reservation form]
+    ShowForm --> SelectService[Select service type]
+    SelectService --> SelectOption[Select service option]
+    SelectOption --> IsActivity{Is activity service?}
+    IsActivity -->|Yes| SelectTime[Select time slot]
+    IsActivity -->|No| SelectDate[Select date]
+    SelectTime --> SelectDate
+    SelectDate --> FillDetails[Fill name, email, people, message]
+    FillDetails --> Submit[Click Confirm reservation]
+    Submit --> ClientValidate{Client validation passes?}
+    ClientValidate -->|No| ShowErrors[Show validation errors]
+    ShowErrors --> FillDetails
+    ClientValidate -->|Yes| SendAPI[POST /api/bookings]
+    SendAPI --> ServerValidate{Server validation passes?}
+    ServerValidate -->|No| ShowServerErrors[Show server error + retry button]
+    ShowServerErrors --> Submit
+    ServerValidate -->|Yes| CheckOverlap{Time slot available?}
+    CheckOverlap -->|No| ShowOverlap["Show "Slot already booked""]
+    ShowOverlap --> SelectTime
+    CheckOverlap -->|Yes| SaveBooking[Save booking as PENDING]
+    SaveBooking --> ShowConfirm[Show confirmation screen]
+    ShowConfirm --> End([Done])
+
+    style Start fill:#071B2E,color:#fff
+    style End fill:#071B2E,color:#fff
+    style ShowConfirm fill:#2E86C1,color:#fff
+    style ShowErrors fill:#F2B705,color:#000
+    style ShowServerErrors fill:#F2B705,color:#000
+    style ShowOverlap fill:#F2B705,color:#000
+```
+
+---
+
+## Activity Diagram — Review Approval Process
+
+```mermaid
+flowchart TD
+    Start([User submits review]) --> Validate{Valid input?}
+    Validate -->|No| Reject[Return 400 error]
+    Reject --> Fail([End])
+    Validate -->|Yes| CreateUser[Find or create User]
+    CreateUser --> SaveReview[Save review with displayed=false]
+    SaveReview --> Success[Return 201 Created]
+    Success --> Pending([Review is pending])
+
+    Pending --> AdminDash[Admin opens dashboard]
+    AdminDash --> FetchAll[GET /api/reviews/all]
+    FetchAll --> ShowPending[Show pending reviews]
+    ShowPending --> AdminAction{Admin action}
+
+    AdminAction -->|Approve| SetDisplayed[PATCH /approve - set displayed=true]
+    AdminAction -->|Reject| SetHidden[PATCH /reject - set displayed=false]
+    AdminAction -->|Delete| DeleteReview["DELETE /reviews/:id"]
+
+    SetDisplayed --> Approved([Review visible on homepage])
+    SetHidden --> Hidden([Review hidden from homepage])
+    DeleteReview --> Removed([Review deleted])
+
+    style Start fill:#071B2E,color:#fff
+    style Approved fill:#2E86C1,color:#fff
+    style Hidden fill:#B5793F,color:#fff
+    style Removed fill:#F2B705,color:#000
+    style Reject fill:#F2B705,color:#000
+```
+
+---
+
+## API Endpoints
+
+### Public
+
+| Method   | Path                | Description                      |
+| -------- | ------------------- | -------------------------------- |
+| `GET`  | `/`               | Health check                     |
+| `POST` | `/api/auth/login` | Admin login → JWT token         |
+| `GET`  | `/api/services`   | List all services with options   |
+| `POST` | `/api/bookings`   | Create a booking                 |
+| `GET`  | `/api/reviews`    | Get displayed (approved) reviews |
+| `POST` | `/api/reviews`    | Submit a review (starts hidden)  |
+
+### Admin (requires `Authorization: Bearer <token>`)
+
+| Method     | Path                              | Description                         |
+| ---------- | --------------------------------- | ----------------------------------- |
+| `GET`    | `/api/bookings`                 | List all bookings                   |
+| `GET`    | `/api/bookings/{id}`            | Get booking by ID                   |
+| `GET`    | `/api/bookings/status/{status}` | Filter bookings by status           |
+| `PATCH`  | `/api/bookings/{id}/status`     | Update booking status               |
+| `DELETE` | `/api/bookings/{id}`            | Delete a booking                    |
+| `GET`    | `/api/reviews/all`              | List all reviews (including hidden) |
+| `PATCH`  | `/api/reviews/{id}/approve`     | Approve review (displayed=true)     |
+| `PATCH`  | `/api/reviews/{id}/reject`      | Hide review (displayed=false)       |
+| `DELETE` | `/api/reviews/{id}`             | Delete a review                     |
+
+**Admin credentials:** `admin@ziggiz.com` / `admin123`
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Java 17+
+- Node.js 18+
+- npm
+
+### Backend
 
 ```bash
-# 1. install
+cd backend
+./mvnw spring-boot:run
+# Runs on http://localhost:8080
+```
+
+### Frontend
+
+```bash
+cd frontend
 npm install
-
-# 2. develop (http://localhost:5173)
 npm run dev
-
-# 3. lint
-npm run lint
-
-# 4. production build → /dist
-npm run build
-
-# 5. preview the build locally
-npm run preview
+# Runs on http://localhost:5173
 ```
 
-## 📁 Project structure
+### H2 Console
+
+Access at `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:ziggizdb`, user: `sa`)
+
+---
+
+## Project Structure
 
 ```
-src/
-  App.jsx                 page composition + modal/menu state
-  index.css               design tokens (@theme), fonts, keyframes, base styles
-  components/
-    TopBar.jsx            thin announcement marquee at the top of the page
-    Hero.jsx              pinned hero: typewriter headline, trip slider, stat card
-    SurfScene.jsx         scroll-linked photo cross-fade background
-    Header.jsx            top nav (lessons link, book CTA, menu button)
-    Ticker.jsx            guides carousel with ghost words + spots marquee
-    Lessons.jsx           expandable panels: lessons, quads, boats, hostel
-    HoverBanner.jsx       the accordion/expand panel primitive used by Lessons
-    Stats.jsx             animated KPI band with black glass cards
-    Testimonials.jsx      centered review cards on a photo backdrop
-    Footer.jsx            CTA, nav columns, contact info, back-to-top
-    ContactModal.jsx      booking dialog (stub submit, focus + Esc handling)
-    MenuOverlay.jsx       fullscreen navigation overlay
-    Loader.jsx            intro loading curtain
-    RevealText.jsx        TypeWriter, StackedLines, WordReveal, WordFade
-    UI.jsx                Eyebrow, PillButton, ArrowButton, Dots
-    Photo.jsx             generative SVG "photo" tiles
-    Logo.jsx              wordmark
-  hooks/
-    useLenis.js           Lenis setup, scroll lock, goTo/scrollToId helpers
-  lib/
-    motion.js             shared Framer Motion presets
-public/
-  images/
-    surf/                 surf photography (surf1…surf10)
-    activities/           yoga, quad & boat imagery
-    hostels/              hostel imagery
-    background/           aerial coastline backdrops (agadir, aghroud, taghazout)
+surf-co/
+├── backend/
+│   ├── src/main/java/com/ziggiz/backend/
+│   │   ├── BackendApplication.java          # Entry point
+│   │   ├── config/
+│   │   │   ├── CorsConfig.java              # CORS for localhost:5173
+│   │   │   ├── JwtUtil.java                 # JWT generate/parse
+│   │   │   ├── GlobalExceptionHandler.java  # Error handling
+│   │   │   ├── DataSeeder.java              # Seeds admin + services
+│   │   │   └── H2ConsoleConfig.java         # H2 web console
+│   │   ├── model/
+│   │   │   ├── User.java                    # User entity
+│   │   │   ├── Booking.java                 # Booking entity
+│   │   │   ├── SurfService.java             # Service entity
+│   │   │   ├── ServiceOption.java           # Service option entity
+│   │   │   ├── Review.java                  # Review entity
+│   │   │   ├── Role.java                    # ADMIN, CLIENT
+│   │   │   └── BookingStatus.java           # PENDING, CONFIRMED, CANCELLED
+│   │   ├── controller/
+│   │   │   ├── AuthController.java          # POST /api/auth/login
+│   │   │   ├── BookingController.java       # Booking CRUD
+│   │   │   ├── ReviewController.java        # Review CRUD + approve/reject
+│   │   │   ├── ServiceController.java       # Service listing
+│   │   │   ├── HomeController.java          # Health check
+│   │   │   └── DebugController.java         # Debug endpoint
+│   │   ├── service/
+│   │   │   ├── BookingService.java          # Booking business logic
+│   │   │   ├── ReviewService.java           # Review business logic
+│   │   │   └── SurfServiceService.java      # Service business logic
+│   │   ├── repository/
+│   │   │   ├── UserRepository.java
+│   │   │   ├── BookingRepository.java
+│   │   │   ├── SurfServiceRepository.java
+│   │   │   ├── ServiceOptionRepository.java
+│   │   │   └── ReviewRepository.java
+│   │   └── dto/
+│   │       ├── AuthRequest.java / AuthResponse.java
+│   │       ├── BookingRequest.java / BookingResponse.java
+│   │       ├── ReviewRequest.java / ReviewResponse.java
+│   │       └── ServiceResponse.java / ServiceOptionResponse.java
+│   └── src/main/resources/
+│       └── application.properties
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx                          # Routes: /, /reservation, /signin, /admin
+│   │   ├── main.jsx                         # Entry: BrowserRouter + AuthProvider + I18nProvider
+│   │   ├── index.css                        # Design tokens, fonts, keyframes
+│   │   ├── pages/
+│   │   │   ├── Home.jsx                     # Landing page composition
+│   │   │   ├── Reservation.jsx              # Booking form + time slots
+│   │   │   ├── SignIn.jsx                   # Admin login
+│   │   │   └── AdminDashboard.jsx           # Manage bookings + reviews
+│   │   ├── components/
+│   │   │   ├── Hero.jsx                     # Scroll-linked pinned hero
+│   │   │   ├── SurfScene.jsx                # Image cross-fade engine
+│   │   │   ├── Header.jsx                   # Top nav + menu trigger
+│   │   │   ├── TopBar.jsx                   # Announcement marquee
+│   │   │   ├── Ticker.jsx                   # Guides carousel
+│   │   │   ├── Lessons.jsx                  # Services section
+│   │   │   ├── HoverBanner.jsx              # Expandable panel
+│   │   │   ├── Stats.jsx                    # Animated KPIs
+│   │   │   ├── Testimonials.jsx             # Reviews carousel + form
+│   │   │   ├── Footer.jsx                   # Contact + map + social
+│   │   │   ├── MenuOverlay.jsx              # Full-screen nav
+│   │   │   ├── Loader.jsx                   # Intro loading curtain
+│   │   │   ├── LanguageSwitcher.jsx         # EN/FR/AR selector
+│   │   │   ├── Logo.jsx                     # Brand wordmark
+│   │   │   ├── RevealText.jsx               # Text animations
+│   │   │   └── UI.jsx                       # Shared primitives
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx              # JWT auth state
+│   │   ├── hooks/
+│   │   │   └── useLenis.js                  # Smooth scroll
+│   │   ├── lib/
+│   │   │   ├── api.js                       # API client (fetch + timeout)
+│   │   │   ├── validate.js                  # Form validation
+│   │   │   └── motion.js                    # Framer Motion presets
+│   │   └── i18n/
+│   │       ├── I18nContext.jsx              # Language context (EN/FR/AR)
+│   │       └── translations.js              # All translation strings
+│   └── public/
+│       └── images/                          # Photography assets
+└── README.md
 ```
 
-## 🧭 Page anatomy
+---
 
+## Design System
+
+Tokens in `frontend/src/index.css`:
+
+| Token                       | Value                     | Use              |
+| --------------------------- | ------------------------- | ---------------- |
+| `sand`                    | `#060B12`               | Page background  |
+| `ocean-deep`              | `#071B2E`               | Section surfaces |
+| `ocean` / `ocean-light` | `#0F3D63` / `#2E86C1` | Brand blues      |
+| `sun` / `coral`         | `#FFD23F` / `#F2B705` | CTAs, highlights |
+| `clay`                    | `#B5793F`               | Hostel accent    |
+| `ink` / `ink-soft`      | `#F5F5F0` / `#A8B0B8` | Text             |
+
+**Typography:** Fraunces (display) + Plus Jakarta Sans (body). Cairo for Arabic.
+
+---
+
+## Internationalization
+
+3 languages with full RTL support:
+
+- **English** (en)
+- **French** (fr)
+- **Arabic** (ar) — auto-switches to RTL layout
+
+---
+
+## Deploying
+
+### Frontend
+
+```bash
+cd frontend && npm run build
+# Static dist/ folder — deploy to Vercel, Netlify, Cloudflare Pages, etc.
 ```
-TopBar          ─ scrolling announcement strip
-Hero            ─ pinned · scroll cross-fade · typewriter · CTAs
-Ticker          ─ guides carousel · ghost words · spots marquee
-Lessons         ─ hover-expand panels with deep links
-Stats           ─ count-up KPIs on glass over Agadir aerial
-Testimonials    ─ centered review cards over Taghazout
-Footer          ─ CTA · sitemap · contact · back to top
+
+### Backend
+
+```bash
+cd backend && ./mvnw package
+# JAR file in target/ — deploy to any Java host
 ```
 
-## ♿ Accessibility & motion
+---
 
-- Menu, modal and hero panels are keyboard operable (`Tab`, `Enter`, `Esc`).
-- `prefers-reduced-motion` disables animations, marquees and smooth scroll.
-- Decorative imagery is `alt=""`; meaningful imagery is labelled.
-- Focus-visible outlines use the ocean-light accent.
+## Notes
 
-## 📦 Deploying
-
-`npm run build` emits a fully static `dist/` folder — deploy it to any static
-host (Vercel, Netlify, Cloudflare Pages, S3 + CDN, GitHub Pages…).
-
-## 🗺️ Notes & next steps
-
-- The contact form is a **stub** — connect it to your booking backend or email
-  provider before going live.
-- Social and legal footer links are placeholders; point them at real URLs.
-- Photography lives in `public/images/` — swap files there to re-theme the site
-  without touching code.
+- H2 is in-memory — data resets on restart. Switch to PostgreSQL/MySQL for production.
+- Passwords are stored in plain text. Add BCrypt hashing before going live.
+- The `DataSeeder` creates an admin user and sample services on each boot.
+- JWT secret is hardcoded in `application.properties`. Use environment variables in production.
 
 ---
 
 <p align="center">
-  <sub>Built with salt in the air — Saltline Surf Co. 🌊</sub>
+  <sub>Built with salt in the air — Ziggiz Surf Co.</sub>
 </p>

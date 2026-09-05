@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <Loader />
 
-      <main className="flex w-full flex-col gap-2 overflow-x-clip p-2 sm:gap-3 sm:p-3">
+      <main className="flex w-full flex-col gap-0 overflow-x-clip">
         <TopBar />
 
         <Hero onOpenMenu={() => setMenuOpen(true)} />

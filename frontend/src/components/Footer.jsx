@@ -1,136 +1,82 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import Logo from './Logo';
-import { Eyebrow } from './UI';
-import { StackedLines } from './RevealText';
-import { getLenis, goTo } from '../hooks/useLenis';
 import { useI18n } from '../i18n/I18nContext';
 
-const COLUMNS = [
-  {
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
-  {
-    links: [
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-      { href: 'lessons' },
-    ],
-  },
-  {
-    links: [
-      { href: 'contact' },
-      { href: 'lessons' },
-      { href: 'contact' },
-      { href: 'contact' },
-    ],
-  },
-];
-
-const SOCIAL_HREFS = ['instagram', 'x', 'youtube', 'tiktok'];
-const LEGAL_HREFS = ['privacy', 'terms'];
+const SOCIAL_HREFS = {
+  Instagram: 'https://instagram.com/ziggizsurfco',
+  X: 'https://x.com/ziggizsurfco',
+  YouTube: 'https://youtube.com/@ziggizsurfco',
+  TikTok: 'https://tiktok.com/@ziggizsurfco',
+};
 
 export default function Footer() {
   const { t } = useI18n();
 
-  const toTop = () => {
-    const lenis = getLenis();
-    if (lenis) lenis.scrollTo(0);
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
   return (
     <footer id="contact" className="scroll-mt-24 rounded-[2rem] bg-ocean-deep px-6 py-16 text-white sm:px-10 sm:py-24">
-      <div className="flex flex-col gap-8 border-b border-white/15 pb-14 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <Eyebrow tone="light">{t.footer.getStarted}</Eyebrow>
-          <StackedLines
-            lines={t.footer.titleLines}
-            className="mt-4 font-display text-5xl font-medium leading-[0.92] tracking-tight sm:text-6xl"
+      <div className="grid gap-10 md:grid-cols-2">
+        <div className="flex flex-col justify-between gap-8">
+          <div>
+            <Link to="/" className="inline-block">
+              <Logo />
+            </Link>
+
+            <address className="mt-6 not-italic text-sm text-white/70 space-y-1">
+              <a href="mailto:crew@ziggiz.com" className="block hover:text-white transition-colors">
+                crew@ziggiz.com
+              </a>
+              <a href="tel:+212600000000" className="block hover:text-white transition-colors">
+                +212 6 00 00 00 00
+              </a>
+              <p className="text-white/50">Casablanca, Morocco</p>
+            </address>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <nav className="flex gap-5 text-sm text-white/60">
+              {t.footer.social.map((s) => (
+                <a
+                  key={s}
+                  href={SOCIAL_HREFS[s] || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  {s}
+                </a>
+              ))}
+            </nav>
+
+            <button
+              onClick={toTop}
+              aria-label={t.footer.backToTop}
+              className="grid size-8 place-items-center rounded-full border border-white/20 text-white/60 transition-colors duration-300 hover:border-sun hover:bg-sun hover:text-ocean-deep"
+            >
+              <ArrowUp className="size-3.5" />
+            </button>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-xl border border-white/10">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53317.34896046176!2d-7.648999999999999!3d33.5922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cd437d7fcc07%3A0x2da6413b7c8c3c0!2sCasablanca%2C%20Morocco!5e0!3m2!1sen!2s!4v1725555555555"
+            width="100%"
+            height="250"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Ziggiz Surf Co location"
           />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ type: 'spring', stiffness: 200, damping: 24, delay: 0.15 }}
-        >
-          <Link
-            to="/reservation"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-wide text-ocean-deep transition-colors hover:bg-ocean-light hover:text-white"
-          >
-            {t.footer.bookTrip}
-            <span aria-hidden="true" className="rtl:-scale-x-100">&rarr;</span>
-          </Link>
-        </motion.div>
       </div>
 
-      <div className="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div className="max-w-xs">
-          <Logo />
-          <p className="mt-4 text-sm text-white/65">
-            {t.footer.blurb}
-          </p>
-          <address className="mt-6 not-italic text-sm text-white/80">
-            <a href="mailto:crew@saltline.co" className="block hover:text-white">
-              crew@saltline.co
-            </a>
-            <a href="tel:+18085550148" className="mt-2 block hover:text-white">
-              +1 (808) 555-0148
-            </a>
-            <p className="mt-2 text-white/55">{t.footer.addressLine}</p>
-          </address>
-        </div>
-
-        {COLUMNS.map((col, i) => (
-          <nav key={t.footer.columns[i].heading}>
-            <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">{t.footer.columns[i].heading}</h3>
-            <ul className="mt-4 space-y-3 text-sm text-white/80">
-              {col.links.map((l, j) => (
-                <li key={t.footer.columns[i].links[j]}>
-                  <a href={`#${l.href}`} onClick={goTo(l.href)} className="hover:text-white">
-                    {t.footer.columns[i].links[j]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
-      </div>
-
-      <div className="flex flex-col items-start gap-5 border-t border-white/15 pt-8 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
-        <p>{t.footer.copyright}</p>
-        <nav className="flex gap-5">
-          {t.footer.social.map((s, i) => (
-            <a key={s} href={`#${SOCIAL_HREFS[i]}`} className="transition-colors hover:text-white">
-              {s}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-5">
-          <nav className="flex gap-5">
-            {t.footer.legal.map((s, i) => (
-              <a key={s} href={`#${LEGAL_HREFS[i]}`} className="transition-colors hover:text-white">
-                {s}
-              </a>
-            ))}
-          </nav>
-          <button
-            onClick={toTop}
-            aria-label={t.footer.backToTop}
-            className="grid size-10 place-items-center rounded-full border border-white/20 text-white/80 transition-colors duration-300 hover:border-sun hover:bg-sun hover:text-ocean-deep"
-          >
-            <ArrowUp className="size-4" />
-          </button>
-        </div>
-      </div>
+      <p className="mt-10 border-t border-white/10 pt-8 text-center text-xs text-white/40">
+        {t.footer.copyright}
+      </p>
     </footer>
   );
 }
