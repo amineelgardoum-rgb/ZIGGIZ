@@ -19,8 +19,8 @@ public class Review {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String quote;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     private String authorRole;
@@ -29,6 +29,11 @@ public class Review {
     @Builder.Default
     private Integer rating = 5;
 
+    /**
+     * Reviews are moderated: they must be explicitly approved before they
+     * become visible. The old default (true) let any review bypass moderation.
+     */
+    @Column(nullable = false)
     @Builder.Default
-    private Boolean displayed = true;
+    private Boolean displayed = false;
 }

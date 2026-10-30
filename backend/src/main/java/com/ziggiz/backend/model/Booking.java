@@ -3,6 +3,7 @@ package com.ziggiz.backend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -20,12 +21,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id", nullable = false)
-    @ToString.Exclude
-    private SurfService service;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    /**
+     * The option is the single source of truth for the service too:
+     * a booking cannot reference a service independently of its option.
+     */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "option_id", nullable = false)
     @ToString.Exclude
     private ServiceOption option;
@@ -38,16 +38,25 @@ public class Booking {
     @Column(nullable = false)
     private Integer people;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    /**
+     * Price snapshot at booking time. The option price can change later, but
+     * the customer must be charged the amount they saw when booking.
+     * Null means the option is priced on request.
+     */
+    @Column(precision = 10, scale = 2)
+    private BigDecimal unitPriceMad;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal totalPriceMad;
+
+    /**
+     * Customer details are derived from this user instead of being copied
+     * into every booking row.
+     */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @ToString.Exclude
     private User user;
-
-    @Column(nullable = false)
-    private String customerName;
-
-    @Column(nullable = false)
-    private String customerEmail;
 
     private String message;
 

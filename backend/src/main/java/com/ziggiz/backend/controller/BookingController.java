@@ -72,7 +72,10 @@ public class BookingController {
             throw new RuntimeException("Unauthorized");
         }
         String token = authHeader.substring(7);
-        if (!jwtUtil.isValid(token) || !"ADMIN".equals(jwtUtil.getRole(token))) {
+        if (!jwtUtil.isValid(token)) {
+            throw new RuntimeException("Unauthorized");
+        }
+        if (!"ADMIN".equals(jwtUtil.getRole(token))) {
             throw new RuntimeException("Admin access required");
         }
     }

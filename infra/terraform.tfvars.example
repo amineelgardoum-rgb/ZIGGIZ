@@ -1,0 +1,16 @@
+resource_group_name = "ziggiz-prod-rg"
+location            = "West Europe"
+
+acr_name = "ziggizregistry"
+
+container_app_name     = "ziggiz-backend"
+container_app_env_name = "ziggiz-env"
+
+sql_server_name     = "ziggiz-sql-server"
+database_name       = "ziggizdb"
+sql_admin_login     = "ziggizadmin"
+sql_admin_password = "REPLACE_WITH_STRONG_PASSWORD"
+
+tags = {
+  project = "ziggiz"
+}

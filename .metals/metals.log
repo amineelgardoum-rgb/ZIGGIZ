@@ -1,0 +1,211 @@
+2026.09.05 20:03:29 INFO  Started: Metals version 1.6.8 in folders '/home/amine/Downloads/surf-co' for client Visual Studio Code 1.136.1.
+2026.09.05 20:03:29 INFO  time: initialize in 0.16s
+2026.09.05 20:03:29 INFO  Memory monitor started
+2026.09.05 20:03:35 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.09.05 20:03:38 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:03:40 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+2026.09.05 20:03:40 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:03:40 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:03:41 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:03:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4
+Sep 05, 2026 8:03:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3
+Sep 05, 2026 8:03:41 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.09.05 20:03:40 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:03:42 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java
+Sep 05, 2026 8:03:42 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+2026.09.05 20:03:42 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:03:42 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:04:44 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 10
+2026.09.05 20:04:44 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:04:44 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:04:45 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 14
+2026.09.05 20:04:45 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:04:46 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:05:19 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 17
+2026.09.05 20:05:20 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+Sep 05, 2026 8:05:32 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 19
+2026.09.05 20:05:33 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:33 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:35 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:39 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:45 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:46 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:49 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:53 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:54 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:56 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:05:56 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:01 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:03 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:07 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:20 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:21 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:24 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:25 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:26 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:31 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:32 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:43 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:45 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:47 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:57 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:06:58 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:00 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:01 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:02 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:10 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:12 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.09.05 20:07:12 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/test/java/com/ziggiz/backend/config/JwtUtilTest.java. Using fallback presentation compiler.
+2026.10.30 15:06:11 INFO  Started: Metals version 1.6.9 in folders '/home/amine/Downloads/surf-co' for client Visual Studio Code 1.144.0.
+2026.10.30 15:06:11 INFO  time: initialize in 0.12s
+2026.10.30 15:06:11 INFO  Memory monitor started
+2026.10.30 15:06:20 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.10.30 15:34:44 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:48 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java
+Oct 30, 2026 3:34:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+Oct 30, 2026 3:34:49 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4
+2026.10.30 15:34:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:34:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:45 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:46 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:47 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:46 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:57 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:57 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:37:58 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:44:09 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:44:11 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:44:11 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayTransactionResponse.java. Using fallback presentation compiler.
+2026.10.30 15:50:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:50:51 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.Oct 30, 2026 3:50:51 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 26
+
+2026.10.30 15:50:51 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:50:50 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:50:52 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:50:54 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:51:51 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:51:53 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:51:53 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:53:35 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:53:35 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:00 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:01 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:42 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:42 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:44 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:55:45 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:56:54 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:56:54 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:56:56 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/config/JwtUtil.java. Using fallback presentation compiler.
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+Oct 30, 2026 3:59:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 50
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:30 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:31 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/repository/PaymentRepository.java. Using fallback presentation compiler.
+2026.10.30 15:59:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+Oct 30, 2026 3:59:36 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 61
+2026.10.30 15:59:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:36 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:37 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:37 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:37 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:39 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 15:59:48 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:13 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:14 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:14 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:15 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:15 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:15 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:15 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:19 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:19 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:19 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:19 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:20 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:20 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:21 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java
+2026.10.30 16:00:21 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 16:00:23 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/payment/YouCanPayGateway.java. Using fallback presentation compiler.
+2026.10.30 18:40:09 INFO  Started: Metals version 1.6.9 in folders '/home/amine/Downloads/surf-co' for client Visual Studio Code 1.144.0.
+2026.10.30 18:40:09 INFO  Memory monitor started
+2026.10.30 18:40:16 WARN  Using H2 2.5.250 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.10.30 18:40:16 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/PaymentStatus.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/PaymentStatus.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/PaymentStatus.java. Using fallback presentation compiler.
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 5
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/PaymentStatus.java. Using fallback presentation compiler.
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 6
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+Oct 30, 2026 6:40:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 12
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:18 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+Oct 30, 2026 6:40:19 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 14
+2026.10.30 18:40:21 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/BookingStatus.java
+2026.10.30 18:40:21 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java
+2026.10.30 18:40:21 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/PaymentStatus.java
+2026.10.30 18:40:21 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:23 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:40:24 INFO  time: code lens generation in 2.78s
+2026.10.30 18:40:25 INFO  time: code lens generation in 3.55s
+2026.10.30 18:46:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:55 WARN  no build target for: /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java
+2026.10.30 18:46:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+Oct 30, 2026 6:46:55 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 23
+Oct 30, 2026 6:46:55 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 24
+2026.10.30 18:46:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:55 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:56 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:57 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:58 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.
+2026.10.30 18:46:59 INFO  no build target found for /home/amine/Downloads/surf-co/backend/src/main/java/com/ziggiz/backend/model/Payment.java. Using fallback presentation compiler.

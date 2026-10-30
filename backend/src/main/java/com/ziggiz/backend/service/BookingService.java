@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -32,10 +33,22 @@ public class BookingService {
         LocalTime sessionTime = null;
         if (request.getTime() != null && !request.getTime().isBlank()) {
             sessionTime = LocalTime.parse(request.getTime());
+        }
 
-            if (bookingRepository.existsByServiceAndDateAndSessionTime(surfService, request.getDate(), sessionTime)) {
-                throw new RuntimeException("This time slot is already booked. Please choose another time.");
-            }
+        if (surfService.isRequiresTime() && sessionTime == null) {
+            throw new RuntimeException("A session time is required for " + surfService.getName() + ".");
+        }
+
+        List<String> allowedTimes = option.getTimes();
+        LocalTime requestedTime = sessionTime;
+        if (requestedTime != null && !allowedTimes.isEmpty()
+                && allowedTimes.stream().noneMatch(slot -> LocalTime.parse(slot).equals(requestedTime))) {
+            throw new RuntimeException("Departure time must be one of: " + String.join(", ", allowedTimes));
+        }
+
+        if (sessionTime != null && bookingRepository.existsByOptionServiceIdAndDateAndSessionTimeAndStatusNot(
+                surfService.getId(), request.getDate(), sessionTime, BookingStatus.CANCELLED)) {
+            throw new RuntimeException("This time slot is already booked. Please choose another time.");
         }
 
         User user = userRepository.findByEmail(request.getEmail())
@@ -45,15 +58,19 @@ public class BookingService {
                         .password("pending")
                         .build()));
 
+        BigDecimal unitPriceMad = option.getPriceMad();
+        BigDecimal totalPriceMad = unitPriceMad != null
+                ? unitPriceMad.multiply(BigDecimal.valueOf(request.getPeople()))
+                : null;
+
         Booking booking = Booking.builder()
-                .service(surfService)
                 .option(option)
                 .date(request.getDate())
                 .sessionTime(sessionTime)
                 .people(request.getPeople())
+                .unitPriceMad(unitPriceMad)
+                .totalPriceMad(totalPriceMad)
                 .user(user)
-                .customerName(request.getName())
-                .customerEmail(request.getEmail())
                 .message(request.getMessage())
                 .status(BookingStatus.PENDING)
                 .build();
@@ -102,24 +119,25 @@ public class BookingService {
     }
 
     private ServiceOption findOptionByName(Long serviceId, String name) {
-        return serviceOptionRepository.findByServiceId(serviceId).stream()
-                .filter(o -> o.getName().equals(name))
-                .findFirst()
+        return serviceOptionRepository.findByServiceIdAndName(serviceId, name)
                 .orElseThrow(() -> new RuntimeException("Option not found: " + name + " for service id: " + serviceId));
     }
 
     private BookingResponse toResponse(Booking booking) {
         User user = booking.getUser();
+        ServiceOption option = booking.getOption();
         return BookingResponse.builder()
                 .id(booking.getId())
-                .userId(user != null ? user.getId() : null)
-                .serviceName(booking.getService().getName())
-                .optionName(booking.getOption().getName())
+                .userId(user.getId())
+                .serviceName(option.getService().getName())
+                .optionName(option.getName())
                 .date(booking.getDate())
                 .time(booking.getSessionTime() != null ? booking.getSessionTime().toString() : null)
                 .people(booking.getPeople())
-                .customerName(booking.getCustomerName())
-                .customerEmail(booking.getCustomerEmail())
+                .unitPriceMad(booking.getUnitPriceMad())
+                .totalPriceMad(booking.getTotalPriceMad())
+                .customerName(user.getFullName())
+                .customerEmail(user.getEmail())
                 .message(booking.getMessage())
                 .status(booking.getStatus().name())
                 .createdAt(booking.getCreatedAt())

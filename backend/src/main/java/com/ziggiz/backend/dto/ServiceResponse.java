@@ -14,5 +14,6 @@ public class ServiceResponse {
     private String name;
     private String description;
     private String image;
+    private boolean requiresTime;
     private List<ServiceOptionResponse> options;
 }

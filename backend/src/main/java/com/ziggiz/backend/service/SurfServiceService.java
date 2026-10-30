@@ -37,6 +37,8 @@ public class SurfServiceService {
                         .id(o.getId())
                         .name(o.getName())
                         .note(o.getNote())
+                        .priceMad(o.getPriceMad())
+                        .times(o.getTimes().isEmpty() ? null : o.getTimes())
                         .build())
                 .collect(Collectors.toList());
 
@@ -45,6 +47,7 @@ public class SurfServiceService {
                 .name(surfService.getName())
                 .description(surfService.getDescription())
                 .image(surfService.getImage())
+                .requiresTime(surfService.isRequiresTime())
                 .options(options)
                 .build();
     }

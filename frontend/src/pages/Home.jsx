@@ -3,6 +3,7 @@ import Loader from '../components/Loader';
 import Hero from '../components/Hero';
 import Ticker from '../components/Ticker';
 import Lessons from '../components/Lessons';
+import Pricing from '../components/Pricing';
 import Stats from '../components/Stats';
 import Testimonials from '../components/Testimonials';
 import Footer from '../components/Footer';
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero onOpenMenu={() => setMenuOpen(true)} />
         <Ticker />
         <Lessons />
+        <Pricing />
         <Stats />
         <Testimonials />
         <Footer />

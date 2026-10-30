@@ -20,14 +20,31 @@ public class SurfService {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    /**
+     * Bookings identify a service by name, so the name must be unique.
+     */
+    @Column(nullable = false, unique = true)
     private String name;
 
     private String description;
 
     private String image;
 
-    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    /**
+     * Whether a booking for this service must specify a session time.
+     * Keeps the business rule in the model instead of hardcoding service
+     * names in the frontend.
+     */
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean requiresTime = false;
+
+    /**
+     * LAZY here; services are fetched together with their options through an
+     * entity graph when the API returns a list. EAGER caused one query per
+     * service (N+1).
+     */
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     @JsonIgnore
     private List<ServiceOption> options = new ArrayList<>();

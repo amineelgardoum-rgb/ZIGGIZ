@@ -4,7 +4,7 @@
   <img src="frontend/public/images/surf/surf1.jpeg" alt="Ziggiz Surf Co — surfer riding a wave at golden hour" width="820">
 </p>
 
-A full-stack **surf-tourism platform** with a React frontend and Spring Boot backend — booking management, review system, and admin dashboard with JWT authentication.
+A full-stack **surf-tourism platform** with a React frontend and Spring Boot backend — booking management, review system, YouCan Pay card payments, and an admin dashboard with JWT authentication.
 
 ---
 
@@ -21,6 +21,7 @@ A full-stack **surf-tourism platform** with a React frontend and Spring Boot bac
 | **Database**  | H2 (in-memory)              | Fast dev database, auto-seeded on boot        |
 | **ORM**       | Spring Data JPA + Hibernate | Entity management, lazy loading               |
 | **Auth**      | JWT (jjwt 0.12.6)           | Token-based admin authentication              |
+| **Payments**  | YouCan Pay API v2           | MAD card payments + signed webhooks           |
 | **Icons**     | lucide-react                | Tree-shakeable icon set                       |
 
 ---
@@ -41,25 +42,34 @@ graph TB
         BookingAPI["BookingController"]
         ReviewAPI["ReviewController"]
         ServiceAPI["ServiceController"]
+        PaymentAPI["PaymentController"]
     end
 
     subgraph Database["H2 Database"]
         Users[(Users)]
         Bookings[(Bookings)]
+        Payments[(Payments)]
         Reviews[(Reviews)]
         Services[(Services)]
     end
+
+    YCP["YouCan Pay API"]
 
     Home -->|"fetch services/reviews"| ServiceAPI
     Home -->|"submit review"| ReviewAPI
     Reservation -->|"create booking"| BookingAPI
     Reservation -->|"fetch services"| ServiceAPI
+    Reservation -->|"initiate payment"| PaymentAPI
     SignIn -->|"login"| AuthAPI
     AdminDash -->|"manage bookings"| BookingAPI
     AdminDash -->|"manage reviews"| ReviewAPI
 
+    PaymentAPI -->|"tokenize + verify"| YCP
+    YCP -->|"signed webhook"| PaymentAPI
     BookingAPI --> Bookings
     BookingAPI --> Users
+    PaymentAPI --> Payments
+    PaymentAPI --> Bookings
     ReviewAPI --> Reviews
     ReviewAPI --> Users
     ServiceAPI --> Services
@@ -90,14 +100,13 @@ classDiagram
 
     class Booking {
         +Long id
-        +SurfService service
         +ServiceOption option
         +LocalDate date
         +LocalTime sessionTime
         +Integer people
+        +BigDecimal unitPriceMad
+        +BigDecimal totalPriceMad
         +User user
-        +String customerName
-        +String customerEmail
         +String message
         +BookingStatus status
         +LocalDateTime createdAt
@@ -115,6 +124,7 @@ classDiagram
         +String name
         +String description
         +String image
+        +boolean requiresTime
         +List~ServiceOption~ options
     }
 
@@ -122,7 +132,28 @@ classDiagram
         +Long id
         +String name
         +String note
+        +BigDecimal priceMad
         +SurfService service
+    }
+
+    class Payment {
+        +Long id
+        +Booking booking
+        +PaymentStatus status
+        +BigDecimal amountMad
+        +String currency
+        +String provider
+        +String providerTransactionId
+        +String providerTokenId
+        +String failureReason
+    }
+
+    class PaymentStatus {
+        <<enum>>
+        PENDING
+        PAID
+        FAILED
+        REFUNDED
     }
 
     class Review {
@@ -137,10 +168,11 @@ classDiagram
     User "1" --> "*" Booking : makes
     User "1" --> "*" Review : writes
     SurfService "1" --> "*" ServiceOption : contains
-    SurfService "1" --> "*" Booking : referenced by
     ServiceOption "1" --> "*" Booking : referenced by
+    Booking "1" --> "0..1" Payment : paid by
     User --> Role
     Booking --> BookingStatus
+    Payment --> PaymentStatus
 ```
 
 ---
@@ -168,6 +200,34 @@ sequenceDiagram
         BE-->>FE: 409 { error: "Time slot already booked" }
         FE-->>User: Show error with retry button
     end
+```
+
+---
+
+## Sequence Diagram — Payment Flow
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant FE as Frontend
+    participant BE as Backend
+    participant YCP as YouCan Pay
+    participant DB as H2 Database
+
+    User->>FE: Open booking and click Pay
+    FE->>BE: POST /api/payments/bookings/{id}/initiate { email }
+    BE->>DB: Load booking + price snapshot
+    BE->>YCP: POST /api/tokenize (amount in centimes, MAD)
+    YCP-->>BE: transaction_id + token.id
+    BE->>DB: Save Payment(status=PENDING)
+    BE-->>FE: tokenId, publicKey, sandbox
+    FE->>YCP: yp.js card form + 3-D Secure
+    YCP-->>User: Payment result
+    YCP->>BE: POST /api/payments/webhook/youcanpay
+    BE->>BE: Verify X-YOUCANPAY-SIGNATURE (HMAC-SHA256)
+    BE->>YCP: GET /api/v2/transactions/{id}
+    YCP-->>BE: Settled transaction
+    BE->>DB: Payment PAID + Booking CONFIRMED
 ```
 
 ---
@@ -337,6 +397,14 @@ flowchart TD
 | `GET`  | `/api/reviews`    | Get displayed (approved) reviews |
 | `POST` | `/api/reviews`    | Submit a review (starts hidden)  |
 
+### Payments (public, protected by booking email/webhook signature)
+
+| Method   | Path                                      | Description                                      |
+| -------- | ----------------------------------------- | ------------------------------------------------ |
+| `POST` | `/api/payments/bookings/{id}/initiate`  | Tokenize a booking payment with YouCan Pay       |
+| `GET`  | `/api/payments/bookings/{id}?email=...` | Get payment status for the booking owner         |
+| `POST` | `/api/payments/webhook/youcanpay`       | Receive signed YouCan Pay transaction events     |
+
 ### Admin (requires `Authorization: Bearer <token>`)
 
 | Method     | Path                              | Description                         |
@@ -352,6 +420,71 @@ flowchart TD
 | `DELETE` | `/api/reviews/{id}`             | Delete a review                     |
 
 **Admin credentials:** `admin@ziggiz.com` / `admin123`
+
+---
+
+## Online Payments (YouCan Pay)
+
+The backend implements the server side of the YouCan Pay card flow for MAD
+payments, and the React reservation page renders the browser card form. The
+reservation form offers two payment methods — **Pay now by card** (the flow
+below) and **Pay on arrival** (the booking stays `PENDING` and is settled in
+cash at check-in; no payment record is created).
+
+1. `POST /api/payments/bookings/{id}/initiate` with the booking email creates a
+   YouCan Pay token. The amount is the booking price snapshot (unit price ×
+   people), converted to centimes.
+2. The frontend renders the card form with `yp.js` and completes 3-D Secure.
+3. YouCan Pay calls `POST /api/payments/webhook/youcanpay`. The backend verifies
+   the `X-YOUCANPAY-SIGNATURE` HMAC-SHA256 header, re-fetches the transaction
+   from `GET /api/v2/transactions/{id}`, and checks the amount, currency and
+   `order_id` before changing anything. In sandbox mode the transaction is read
+   from the signed webhook body instead, because the v2 Transactions API only
+   accepts live keys.
+4. `transaction.paid` moves the payment to `PAID` and the booking to
+   `CONFIRMED`; `transaction.failed` marks the payment `FAILED`; a refund marks
+   it `REFUNDED` and cancels the booking.
+5. The frontend never trusts the browser result: after `confirm()` resolves it
+   polls `GET /api/payments/bookings/{id}?email=…` every 2s (60s cap) until the
+   webhook has moved the payment to `PAID`, then shows the confirmation screen.
+
+With `YOUCANPAY_SANDBOX=true`, tokenization uses
+`https://youcanpay.com/sandbox/api/tokenize` and the backend expects sandbox
+keys (`pri_sandbox_...` / `pub_sandbox_...`). Use the test cards from the
+YouCan Pay sandbox documentation; live and sandbox keys cannot be mixed.
+
+### Configuration
+
+Set these environment variables before starting the backend:
+
+| Variable                    | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `YOUCANPAY_PRIVATE_KEY`   | Server API key (also used to verify webhooks)    |
+| `YOUCANPAY_PUBLIC_KEY`    | Public key used by `yp.js` in the browser       |
+| `YOUCANPAY_BASE_URL`      | Root API URL; defaults to `https://youcanpay.com` |
+| `YOUCANPAY_SUCCESS_URL`   | Browser redirect after success                   |
+| `YOUCANPAY_ERROR_URL`     | Browser redirect after failure                   |
+| `YOUCANPAY_SANDBOX`       | `true` for the sandbox environment               |
+
+Register the webhook once in the YouCan Pay dashboard (or `POST
+/api/v2/webhooks`) with the events `transaction.paid`, `transaction.failed` and
+`transaction.refunded`. The URL must be public HTTPS; local development needs a
+tunnel such as ngrok or Cloudflare Tunnel.
+
+### Seeded prices
+
+Prices are stored per person on `ServiceOption.priceMad` and snapshotted onto
+`Booking` when the booking is created. `null` means “price on request” and such
+options cannot be paid online.
+
+| Service       | Option                    | Price (MAD/person) |
+| ------------- | ------------------------- | -----------------: |
+| Quad Trips    | Sunset Dune Run           |                450 |
+| Quad Trips    | Paradise Valley Ride      |                500 |
+| Boat Trips    | Sunset Coast Cruise       |                600 |
+| Boat Trips    | Snorkel & Hidden Coves    |                600 |
+| Surf Lessons  | Grom Camp / Adult / Private | On request       |
+| Surf Hostel   | Shared / Private / Surf & Stay | On request   |
 
 ---
 
@@ -405,28 +538,40 @@ surf-co/
 │   │   │   ├── SurfService.java             # Service entity
 │   │   │   ├── ServiceOption.java           # Service option entity
 │   │   │   ├── Review.java                  # Review entity
+│   │   │   ├── Payment.java                 # Payment entity
 │   │   │   ├── Role.java                    # ADMIN, CLIENT
-│   │   │   └── BookingStatus.java           # PENDING, CONFIRMED, CANCELLED
+│   │   │   ├── BookingStatus.java           # PENDING, CONFIRMED, CANCELLED
+│   │   │   └── PaymentStatus.java           # PENDING, PAID, FAILED, REFUNDED
+│   │   ├── payment/
+│   │   │   ├── PaymentGateway.java           # Provider interface (mockable)
+│   │   │   ├── YouCanPayGateway.java         # Tokenize + transaction API
+│   │   │   ├── YouCanPayProperties.java      # payment.youcanpay.* config
+│   │   │   └── PaymentException.java         # HTTP-status error
 │   │   ├── controller/
 │   │   │   ├── AuthController.java          # POST /api/auth/login
 │   │   │   ├── BookingController.java       # Booking CRUD
 │   │   │   ├── ReviewController.java        # Review CRUD + approve/reject
 │   │   │   ├── ServiceController.java       # Service listing
+│   │   │   ├── PaymentController.java       # Payment initiate/status/webhook
 │   │   │   ├── HomeController.java          # Health check
 │   │   │   └── DebugController.java         # Debug endpoint
 │   │   ├── service/
 │   │   │   ├── BookingService.java          # Booking business logic
 │   │   │   ├── ReviewService.java           # Review business logic
+│   │   │   ├── PaymentService.java          # Payment business logic
 │   │   │   └── SurfServiceService.java      # Service business logic
 │   │   ├── repository/
 │   │   │   ├── UserRepository.java
 │   │   │   ├── BookingRepository.java
 │   │   │   ├── SurfServiceRepository.java
 │   │   │   ├── ServiceOptionRepository.java
+│   │   │   ├── PaymentRepository.java
 │   │   │   └── ReviewRepository.java
 │   │   └── dto/
 │   │       ├── AuthRequest.java / AuthResponse.java
 │   │       ├── BookingRequest.java / BookingResponse.java
+│   │       ├── PaymentInitiateRequest.java / PaymentInitiateResponse.java
+│   │       ├── PaymentResponse.java
 │   │       ├── ReviewRequest.java / ReviewResponse.java
 │   │       └── ServiceResponse.java / ServiceOptionResponse.java
 │   └── src/main/resources/
@@ -438,7 +583,7 @@ surf-co/
 │   │   ├── index.css                        # Design tokens, fonts, keyframes
 │   │   ├── pages/
 │   │   │   ├── Home.jsx                     # Landing page composition
-│   │   │   ├── Reservation.jsx              # Booking form + time slots
+│   │   │   ├── Reservation.jsx              # Booking form + payment method choice
 │   │   │   ├── SignIn.jsx                   # Admin login
 │   │   │   └── AdminDashboard.jsx           # Manage bookings + reviews
 │   │   ├── components/
@@ -448,9 +593,11 @@ surf-co/
 │   │   │   ├── TopBar.jsx                   # Announcement marquee
 │   │   │   ├── Ticker.jsx                   # Guides carousel
 │   │   │   ├── Lessons.jsx                  # Services section
+│   │   │   ├── Pricing.jsx                  # Prices & packages (from client rate sheets)
 │   │   │   ├── HoverBanner.jsx              # Expandable panel
 │   │   │   ├── Stats.jsx                    # Animated KPIs
 │   │   │   ├── Testimonials.jsx             # Reviews carousel + form
+│   │   │   ├── PaymentForm.jsx              # YouCan Pay card form (yp.js)
 │   │   │   ├── Footer.jsx                   # Contact + map + social
 │   │   │   ├── MenuOverlay.jsx              # Full-screen nav
 │   │   │   ├── Loader.jsx                   # Intro loading curtain
@@ -527,6 +674,15 @@ cd backend && ./mvnw package
 - Passwords are stored in plain text. Add BCrypt hashing before going live.
 - The `DataSeeder` creates an admin user and sample services on each boot.
 - JWT secret is hardcoded in `application.properties`. Use environment variables in production.
+- Booking rows do not duplicate customer or service data: customer fields are derived from `User`, and the service is derived from the selected `ServiceOption`. Prices are intentionally snapshotted on the booking so later price changes do not alter existing charges.
+- Service and review list endpoints use JPA entity graphs to avoid N+1 queries.
+- YouCan Pay webhook registration is manual and needs a public HTTPS URL; the backend only implements the receiver.
+- The React card form (`yp.js`) is implemented: `frontend/index.html` loads
+  `https://youcanpay.com/yp.js`, `PaymentForm.jsx` mounts the embedded form with
+  the v3 `window.yp(publicKey).elements({ token, container })` API, and the page
+  only treats a payment as successful after polling
+  `GET /api/payments/bookings/{id}?email=…` for the webhook-driven `PAID`
+  status (the browser result is never trusted).
 
 ---
 

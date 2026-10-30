@@ -34,6 +34,7 @@ public class ReviewService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public ReviewResponse createReview(ReviewRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseGet(() -> userRepository.save(User.builder()
@@ -80,8 +81,8 @@ public class ReviewService {
         return ReviewResponse.builder()
                 .id(review.getId())
                 .quote(review.getQuote())
-                .userId(user != null ? user.getId() : null)
-                .authorName(user != null ? user.getFullName() : null)
+                .userId(user.getId())
+                .authorName(user.getFullName())
                 .authorRole(review.getAuthorRole())
                 .rating(review.getRating())
                 .displayed(review.getDisplayed())

@@ -57,6 +57,20 @@ export async function submitReservation(data) {
   });
 }
 
+export async function initiatePayment(bookingId, email) {
+  return request(`${API_BASE}/api/payments/bookings/${bookingId}/initiate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+}
+
+export async function getPaymentStatus(bookingId, email) {
+  return request(
+    `${API_BASE}/api/payments/bookings/${bookingId}?email=${encodeURIComponent(email)}`
+  );
+}
+
 export async function fetchServices() {
   if (!API_BASE) return null;
   return request(`${API_BASE}/api/services`);
